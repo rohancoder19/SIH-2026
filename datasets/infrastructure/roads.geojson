@@ -1,0 +1,410 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-100",
+        "name": "Evacuation Route Mirik Basti Lower",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "PARTIALLY_BLOCKED"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.1884,
+            26.8872
+          ],
+          [
+            88.2084,
+            26.9072
+          ],
+          [
+            88.2384,
+            26.9272
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-101",
+        "name": "Evacuation Route Sukhiapokhri Valley",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "CLEAR"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.1367,
+            26.9961
+          ],
+          [
+            88.1567,
+            27.016099999999998
+          ],
+          [
+            88.1867,
+            27.036099999999998
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-102",
+        "name": "Evacuation Route Teesta Bazaar Waterfront",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "CLEAR"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.4285,
+            27.0582
+          ],
+          [
+            88.4485,
+            27.0782
+          ],
+          [
+            88.4785,
+            27.0982
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-103",
+        "name": "Evacuation Route Lebong Slope Settlement",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "PARTIALLY_BLOCKED"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.2721,
+            27.0621
+          ],
+          [
+            88.29209999999999,
+            27.0821
+          ],
+          [
+            88.32209999999999,
+            27.1021
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-104",
+        "name": "Evacuation Route Ghoom Station Ridge",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "CLEAR"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.2575,
+            27.0102
+          ],
+          [
+            88.27749999999999,
+            27.0302
+          ],
+          [
+            88.30749999999999,
+            27.0502
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-105",
+        "name": "Evacuation Route Peshok Tea Garden Sector 3",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "CLEAR"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.3948,
+            27.0715
+          ],
+          [
+            88.4148,
+            27.0915
+          ],
+          [
+            88.4448,
+            27.1115
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-106",
+        "name": "Evacuation Route Melli Bridge Settlement",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "PARTIALLY_BLOCKED"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.4412,
+            27.0864
+          ],
+          [
+            88.46119999999999,
+            27.1064
+          ],
+          [
+            88.49119999999999,
+            27.1264
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-107",
+        "name": "Evacuation Route Kurseong St. Marys Slope",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "CLEAR"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.2785,
+            26.8791
+          ],
+          [
+            88.29849999999999,
+            26.8991
+          ],
+          [
+            88.32849999999999,
+            26.9191
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-108",
+        "name": "Evacuation Route Gorubathan Lower Block",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "CLEAR"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.7012,
+            26.9734
+          ],
+          [
+            88.7212,
+            26.9934
+          ],
+          [
+            88.7512,
+            27.0134
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-109",
+        "name": "Evacuation Route Pedong North Ridge",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "PARTIALLY_BLOCKED"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.6189,
+            27.1512
+          ],
+          [
+            88.63889999999999,
+            27.1712
+          ],
+          [
+            88.6689,
+            27.1912
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-110",
+        "name": "Evacuation Route Darjeeling Sector Village 11",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "CLEAR"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.414,
+            26.952
+          ],
+          [
+            88.434,
+            26.972
+          ],
+          [
+            88.464,
+            26.992
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-111",
+        "name": "Evacuation Route Kalimpong Sector Village 12",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "CLEAR"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.438,
+            26.964
+          ],
+          [
+            88.458,
+            26.983999999999998
+          ],
+          [
+            88.488,
+            27.003999999999998
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-112",
+        "name": "Evacuation Route Darjeeling Sector Village 13",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "PARTIALLY_BLOCKED"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.462,
+            26.976
+          ],
+          [
+            88.482,
+            26.996
+          ],
+          [
+            88.512,
+            27.016
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-113",
+        "name": "Evacuation Route Kalimpong Sector Village 14",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "CLEAR"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.486,
+            26.988
+          ],
+          [
+            88.506,
+            27.008
+          ],
+          [
+            88.536,
+            27.028
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "RD-114",
+        "name": "Evacuation Route Darjeeling Sector Village 15",
+        "road_type": "State Highway / PWD Road",
+        "width_m": 6.5,
+        "accessibility_status": "CLEAR"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.51,
+            27.0
+          ],
+          [
+            88.53,
+            27.02
+          ],
+          [
+            88.56,
+            27.04
+          ]
+        ]
+      }
+    }
+  ]
+}

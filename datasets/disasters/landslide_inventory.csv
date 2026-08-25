@@ -1,0 +1,21 @@
+landslide_id,village_id,event_date,slope_angle_deg,movement_velocity,trigger_factor,volume_cum
+LS-INV-501,VIL-001,2025-08-02,52,Rapid Debris Flow,Heavy Monsoon Rainfall,28959
+LS-INV-502,VIL-002,2025-08-02,58,Rapid Debris Flow,Heavy Monsoon Rainfall,19332
+LS-INV-503,VIL-003,2025-08-02,33,Rapid Debris Flow,Heavy Monsoon Rainfall,1432
+LS-INV-504,VIL-004,2025-08-02,42,Rapid Debris Flow,Heavy Monsoon Rainfall,9773
+LS-INV-505,VIL-005,2025-08-02,52,Rapid Debris Flow,Heavy Monsoon Rainfall,18367
+LS-INV-506,VIL-006,2025-08-02,37,Rapid Debris Flow,Heavy Monsoon Rainfall,30156
+LS-INV-507,VIL-007,2025-08-02,49,Rapid Debris Flow,Heavy Monsoon Rainfall,29228
+LS-INV-508,VIL-008,2025-08-02,49,Rapid Debris Flow,Heavy Monsoon Rainfall,1833
+LS-INV-509,VIL-009,2025-08-02,35,Rapid Debris Flow,Heavy Monsoon Rainfall,6131
+LS-INV-510,VIL-010,2025-08-02,54,Rapid Debris Flow,Heavy Monsoon Rainfall,10968
+LS-INV-511,VIL-011,2025-08-02,49,Rapid Debris Flow,Heavy Monsoon Rainfall,3561
+LS-INV-512,VIL-012,2025-08-02,58,Rapid Debris Flow,Heavy Monsoon Rainfall,25396
+LS-INV-513,VIL-013,2025-08-02,50,Rapid Debris Flow,Heavy Monsoon Rainfall,37410
+LS-INV-514,VIL-014,2025-08-02,36,Rapid Debris Flow,Heavy Monsoon Rainfall,29366
+LS-INV-515,VIL-015,2025-08-02,36,Rapid Debris Flow,Heavy Monsoon Rainfall,3941
+LS-INV-516,VIL-016,2025-08-02,41,Rapid Debris Flow,Heavy Monsoon Rainfall,25097
+LS-INV-517,VIL-017,2025-08-02,57,Rapid Debris Flow,Heavy Monsoon Rainfall,3814
+LS-INV-518,VIL-018,2025-08-02,43,Rapid Debris Flow,Heavy Monsoon Rainfall,14967
+LS-INV-519,VIL-019,2025-08-02,53,Rapid Debris Flow,Heavy Monsoon Rainfall,17553
+LS-INV-520,VIL-020,2025-08-02,53,Rapid Debris Flow,Heavy Monsoon Rainfall,7936

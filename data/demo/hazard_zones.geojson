@@ -1,0 +1,216 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HZ-FL-001",
+        "hazard_type": "Flood",
+        "name": "Teesta River Flood Red-Zone",
+        "severity": "Critical",
+        "risk_score": 96,
+        "source": "CWC Hydrological Survey 2025",
+        "confidence": 0.94
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              88.415,
+              27.045
+            ],
+            [
+              88.435,
+              27.05
+            ],
+            [
+              88.45,
+              27.08
+            ],
+            [
+              88.44,
+              27.095
+            ],
+            [
+              88.42,
+              27.07
+            ],
+            [
+              88.41,
+              27.055
+            ],
+            [
+              88.415,
+              27.045
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HZ-LS-002",
+        "hazard_type": "Landslide",
+        "name": "Mirik-Sukhiapokhri Slope Instability Zone",
+        "severity": "Very High",
+        "risk_score": 92,
+        "source": "GSI Landslide Susceptibility Map",
+        "confidence": 0.91
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              88.13,
+              26.87
+            ],
+            [
+              88.2,
+              26.88
+            ],
+            [
+              88.21,
+              27.01
+            ],
+            [
+              88.14,
+              27.015
+            ],
+            [
+              88.125,
+              26.94
+            ],
+            [
+              88.13,
+              26.87
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HZ-EQ-003",
+        "hazard_type": "Earthquake",
+        "name": "Main Boundary Thrust (MBT) Seismic Risk Corridor",
+        "severity": "High",
+        "risk_score": 85,
+        "source": "National Seismological Centre",
+        "confidence": 0.89
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              88.1,
+              26.82
+            ],
+            [
+              88.75,
+              26.95
+            ],
+            [
+              88.77,
+              27.02
+            ],
+            [
+              88.12,
+              26.89
+            ],
+            [
+              88.1,
+              26.82
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HZ-MH-004",
+        "hazard_type": "Multi-Hazard",
+        "name": "Peshok-Teesta Confluence Vulnerability Complex",
+        "severity": "Critical",
+        "risk_score": 98,
+        "source": "SurakshitSthan Multi-Hazard Engine",
+        "confidence": 0.96
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              88.38,
+              27.05
+            ],
+            [
+              88.44,
+              27.05
+            ],
+            [
+              88.45,
+              27.085
+            ],
+            [
+              88.39,
+              27.08
+            ],
+            [
+              88.38,
+              27.05
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HZ-FL-005",
+        "hazard_type": "Flood",
+        "name": "Chel & Jaldhaka Flash Flood Zone",
+        "severity": "High",
+        "risk_score": 89,
+        "source": "North Bengal Flood Control Board",
+        "confidence": 0.88
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              88.65,
+              26.9
+            ],
+            [
+              88.72,
+              26.92
+            ],
+            [
+              88.89,
+              27.09
+            ],
+            [
+              88.84,
+              27.1
+            ],
+            [
+              88.64,
+              26.93
+            ],
+            [
+              88.65,
+              26.9
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

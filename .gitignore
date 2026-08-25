@@ -1,0 +1,39 @@
+# Secrets & Environment Variables
+.env
+.env.*
+*.env
+secrets.json
+
+# Database
+*.db
+*.sqlite3
+backend/surakshitsthan.db
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.production
+.npm
+.vite
+
+# Python / Backend
+__pycache__/
+*.py[cod]
+*$py.class
+backend/__pycache__/
+backend/*/__pycache__/
+backend/*/*/__pycache__/
+backend/.venv/
+.venv/
+env/
+venv/
+.pytest_cache/
+
+# IDE & System
+.vscode/
+.idea/
+.DS_Store
+*.log
+scratch/

@@ -1,0 +1,31 @@
+village_id,village_name,district,state,total_population,vulnerable_population,male,female,children,elderly
+VIL-001,Mirik Basti Lower,Darjeeling,West Bengal,2412,685,1230,1182,530,337
+VIL-002,Sukhiapokhri Valley,Darjeeling,West Bengal,3753,1207,1914,1839,825,525
+VIL-003,Teesta Bazaar Waterfront,Kalimpong,West Bengal,2643,1070,1347,1296,581,370
+VIL-004,Lebong Slope Settlement,Darjeeling,West Bengal,2212,841,1128,1084,486,309
+VIL-005,Ghoom Station Ridge,Darjeeling,West Bengal,1760,501,897,863,387,246
+VIL-006,Peshok Tea Garden Sector 3,Darjeeling,West Bengal,3291,1051,1678,1613,724,460
+VIL-007,Melli Bridge Settlement,Kalimpong,West Bengal,1717,644,875,842,377,240
+VIL-008,Kurseong St. Marys Slope,Darjeeling,West Bengal,4936,1567,2517,2419,1085,691
+VIL-009,Gorubathan Lower Block,Kalimpong,West Bengal,3778,1577,1926,1852,831,528
+VIL-010,Pedong North Ridge,Kalimpong,West Bengal,1553,635,792,761,341,217
+VIL-011,Darjeeling Sector Village 11,Darjeeling,West Bengal,2807,1119,1431,1376,617,392
+VIL-012,Kalimpong Sector Village 12,Kalimpong,West Bengal,4287,1402,2186,2101,943,600
+VIL-013,Darjeeling Sector Village 13,Darjeeling,West Bengal,3263,1444,1664,1599,717,456
+VIL-014,Kalimpong Sector Village 14,Kalimpong,West Bengal,4257,1265,2171,2086,936,595
+VIL-015,Darjeeling Sector Village 15,Darjeeling,West Bengal,4612,1367,2352,2260,1014,645
+VIL-016,Kalimpong Sector Village 16,Kalimpong,West Bengal,4317,1651,2201,2116,949,604
+VIL-017,Darjeeling Sector Village 17,Darjeeling,West Bengal,1855,749,946,909,408,259
+VIL-018,Kalimpong Sector Village 18,Kalimpong,West Bengal,2522,1123,1286,1236,554,353
+VIL-019,Darjeeling Sector Village 19,Darjeeling,West Bengal,4600,1349,2346,2254,1012,644
+VIL-020,Kalimpong Sector Village 20,Kalimpong,West Bengal,3901,1642,1989,1912,858,546
+VIL-021,Darjeeling Sector Village 21,Darjeeling,West Bengal,4462,1687,2275,2187,981,624
+VIL-022,Kalimpong Sector Village 22,Kalimpong,West Bengal,2069,595,1055,1014,455,289
+VIL-023,Darjeeling Sector Village 23,Darjeeling,West Bengal,3366,1384,1716,1650,740,471
+VIL-024,Kalimpong Sector Village 24,Kalimpong,West Bengal,2153,915,1098,1055,473,301
+VIL-025,Darjeeling Sector Village 25,Darjeeling,West Bengal,2327,801,1186,1141,511,325
+VIL-026,Kalimpong Sector Village 26,Kalimpong,West Bengal,5214,2023,2659,2555,1147,729
+VIL-027,Darjeeling Sector Village 27,Darjeeling,West Bengal,4488,1380,2288,2200,987,628
+VIL-028,Kalimpong Sector Village 28,Kalimpong,West Bengal,4410,1391,2249,2161,970,617
+VIL-029,Darjeeling Sector Village 29,Darjeeling,West Bengal,3687,1472,1880,1807,811,516
+VIL-030,Kalimpong Sector Village 30,Kalimpong,West Bengal,2084,799,1062,1022,458,291

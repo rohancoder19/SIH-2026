@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Dark Navy Radial Gradient -->
+    <radialGradient id="bg-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1c2541" />
+      <stop offset="100%" stop-color="#0b132b" />
+    </radialGradient>
+
+    <!-- Cyan Glow Gradient -->
+    <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#48cae4" />
+      <stop offset="50%" stop-color="#00b4d8" />
+      <stop offset="100%" stop-color="#06d6a0" />
+    </linearGradient>
+
+    <!-- Shield Gradient -->
+    <linearGradient id="shield-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3a506b" />
+      <stop offset="100%" stop-color="#131d38" />
+    </linearGradient>
+
+    <!-- Amber Alert Accent -->
+    <linearGradient id="amber-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd166" />
+      <stop offset="100%" stop-color="#f77f00" />
+    </linearGradient>
+
+    <!-- Soft Drop Shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Rounded Squircle -->
+  <rect width="512" height="512" rx="128" fill="url(#bg-grad)" stroke="#273459" stroke-width="8" />
+
+  <!-- Outer Geospatial Shield Frame -->
+  <g filter="url(#shadow)">
+    <path d="M256 72 C340 72, 400 96, 400 96 V232 C400 344, 304 408, 256 440 C208 408, 112 344, 112 232 V96 C112 96, 172 72, 256 72 Z"
+          fill="url(#shield-grad)" stroke="url(#cyan-glow)" stroke-width="12" stroke-linejoin="round" />
+  </g>
+
+  <!-- High-Plateau Mountain & Topographic Wave Layer -->
+  <path d="M160 300 L216 220 L272 270 L320 200 L352 300 Z"
+        fill="url(#cyan-glow)" opacity="0.3" />
+
+  <!-- Radar GIS Concentric Pulse Rings -->
+  <circle cx="256" cy="240" r="90" fill="none" stroke="#48cae4" stroke-width="4" stroke-dasharray="8 8" opacity="0.6" />
+  <circle cx="256" cy="240" r="130" fill="none" stroke="#06d6a0" stroke-width="3" stroke-dasharray="12 12" opacity="0.4" />
+
+  <!-- Center Pin Emblem with Alert Core -->
+  <g filter="url(#glow)">
+    <!-- Map Location Pin Outline -->
+    <path d="M256 160 C216 160, 184 192, 184 232 C184 288, 256 348, 256 348 C256 348, 328 288, 328 232 C328 192, 296 160, 256 160 Z"
+          fill="url(#cyan-glow)" />
+    <!-- Inner Core Dot -->
+    <circle cx="256" cy="224" r="28" fill="#0b132b" />
+    <circle cx="256" cy="224" r="16" fill="url(#amber-grad)" />
+  </g>
+
+  <!-- Top Satellite Signals -->
+  <path d="M216 128 C240 112, 272 112, 296 128" fill="none" stroke="url(#cyan-glow)" stroke-width="8" stroke-linecap="round" />
+  <path d="M232 144 C248 134, 264 134, 280 144" fill="none" stroke="url(#amber-grad)" stroke-width="6" stroke-linecap="round" />
+</svg>

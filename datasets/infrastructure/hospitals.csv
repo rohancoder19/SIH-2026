@@ -1,0 +1,6 @@
+hospital_id,name,district,latitude,longitude,bed_capacity,emergency_unit_available,icu_beds
+HOSP-01,Darjeeling District Hospital,Darjeeling,27.0392,88.2612,250,YES,20
+HOSP-02,Kalimpong Sub-Divisional Hospital,Kalimpong,27.0682,88.4721,180,YES,12
+HOSP-03,Kurseong Sub-Divisional Hospital,Darjeeling,26.8812,88.2754,120,YES,8
+HOSP-04,Mirik Rural Health Centre,Darjeeling,26.8912,88.1912,45,YES,4
+HOSP-05,Pedong Primary Health Centre,Kalimpong,27.155,88.621,30,NO,0

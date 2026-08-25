@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-navy-950 text-slate-100 font-sans antialiased;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b132b;
+}
+::-webkit-scrollbar-thumb {
+  background: #273459;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a506b;
+}
+
+/* Glassmorphism Cards */
+.glass-panel {
+  background: rgba(19, 29, 56, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s ease-in-out;
+}
+.glass-panel-hover:hover {
+  background: rgba(28, 37, 65, 0.85);
+  border-color: rgba(72, 202, 228, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Leaflet Dark Customizations */
+.leaflet-container {
+  background-color: #0b132b !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #131d38 !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.7) !important;
+}
+
+.leaflet-popup-tip {
+  background: #131d38 !important;
+}
+
+/* Pulse Animations for Critical Markers */
+@keyframes pulse-red {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 71, 111, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(239, 71, 111, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 71, 111, 0);
+  }
+}
+
+.marker-pulse-red {
+  border-radius: 50%;
+  animation: pulse-red 2s infinite;
+}

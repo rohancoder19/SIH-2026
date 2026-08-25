@@ -1,0 +1,6 @@
+school_id,name,district,latitude,longitude,capacity,shelter_potential
+SCH-01,St. Joseph's North Point School,Darjeeling,27.0512,88.261,1200,HIGH_SHELTER
+SCH-02,Kalimpong Govt High School,Kalimpong,27.0721,88.4789,950,HIGH_SHELTER
+SCH-03,Ghoom Boys School,Darjeeling,27.0112,88.258,600,MODERATE_SHELTER
+SCH-04,Sukhiapokhri Higher Secondary,Darjeeling,26.998,88.138,750,HIGH_SHELTER
+SCH-05,Gorubathan Higher Secondary,Kalimpong,26.975,88.703,800,HIGH_SHELTER
