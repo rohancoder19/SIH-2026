@@ -161,41 +161,41 @@ export const GISMapComponent: React.FC<GISMapComponentProps> = ({
             >
               <Popup>
                 <div className="p-2 min-w-[240px]">
-                  <div className="flex items-center justify-between border-b border-navy-700 pb-2 mb-2">
+                  <div className="flex items-center justify-between border-b border-slate-200 dark:border-navy-700 pb-2 mb-2">
                     <div>
-                      <h4 className="text-sm font-extrabold text-white">{hab.name}</h4>
-                      <p className="text-[11px] text-slate-400">{hab.district} District</p>
+                      <h4 className="text-sm font-extrabold text-slate-900 dark:text-white">{hab.name}</h4>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400">{hab.district} District</p>
                     </div>
                     <Badge priority={hab.relocation_priority} size="sm" />
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs mb-3">
-                    <div className="bg-navy-850 p-1.5 rounded-lg border border-navy-700">
-                      <p className="text-[10px] text-slate-400">Total Population</p>
-                      <p className="font-bold text-slate-100">{hab.population.toLocaleString()}</p>
+                    <div className="bg-slate-100 dark:bg-navy-850 p-1.5 rounded-lg border border-slate-200 dark:border-navy-700">
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Total Population</p>
+                      <p className="font-bold text-slate-900 dark:text-slate-100">{hab.population.toLocaleString()}</p>
                     </div>
-                    <div className="bg-navy-850 p-1.5 rounded-lg border border-navy-700">
-                      <p className="text-[10px] text-slate-400">Vulnerable Pop</p>
-                      <p className="font-bold text-accent-red">{hab.vulnerable_population.toLocaleString()}</p>
+                    <div className="bg-slate-100 dark:bg-navy-850 p-1.5 rounded-lg border border-slate-200 dark:border-navy-700">
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Vulnerable Pop</p>
+                      <p className="font-bold text-rose-600 dark:text-accent-red">{hab.vulnerable_population.toLocaleString()}</p>
                     </div>
-                    <div className="bg-navy-850 p-1.5 rounded-lg border border-navy-700">
-                      <p className="text-[10px] text-slate-400">Overall Risk Score</p>
-                      <p className="font-bold text-accent-amber">{hab.hazard_score}/100</p>
+                    <div className="bg-slate-100 dark:bg-navy-850 p-1.5 rounded-lg border border-slate-200 dark:border-navy-700">
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Overall Risk Score</p>
+                      <p className="font-bold text-amber-600 dark:text-accent-amber">{hab.hazard_score}/100</p>
                     </div>
-                    <div className="bg-navy-850 p-1.5 rounded-lg border border-navy-700">
-                      <p className="text-[10px] text-slate-400">Elevation</p>
-                      <p className="font-bold text-slate-100">{hab.elevation} m</p>
+                    <div className="bg-slate-100 dark:bg-navy-850 p-1.5 rounded-lg border border-slate-200 dark:border-navy-700">
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Elevation</p>
+                      <p className="font-bold text-slate-900 dark:text-slate-100">{hab.elevation} m</p>
                     </div>
                   </div>
                   <div className="flex gap-2">
                     <button
                       onClick={() => navigate(`/habitations/${hab.id}`)}
-                      className="flex-1 py-1.5 px-2 bg-navy-800 hover:bg-navy-700 border border-navy-600 rounded-lg text-xs font-semibold text-slate-200 transition text-center"
+                      className="flex-1 py-1.5 px-2 bg-slate-200 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 border border-slate-300 dark:border-navy-600 rounded-lg text-xs font-semibold text-slate-800 dark:text-slate-200 transition text-center"
                     >
                       View Risk Detail
                     </button>
                     <button
                       onClick={() => navigate(`/relocation?habitation_id=${hab.id}`)}
-                      className="flex-1 py-1.5 px-2 bg-accent-blue hover:bg-accent-blue/80 rounded-lg text-xs font-bold text-navy-950 transition text-center shadow-md shadow-accent-blue/20"
+                      className="flex-1 py-1.5 px-2 bg-sky-600 hover:bg-sky-500 dark:bg-accent-blue dark:hover:bg-accent-blue/80 rounded-lg text-xs font-bold text-white dark:text-navy-950 transition text-center shadow-xs"
                     >
                       Safe Sites
                     </button>
@@ -218,22 +218,22 @@ export const GISMapComponent: React.FC<GISMapComponentProps> = ({
           >
             <Popup>
               <div className="p-2 min-w-[220px]">
-                <div className="flex items-center justify-between border-b border-navy-700 pb-2 mb-2">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-navy-700 pb-2 mb-2">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-accent-teal">SAFE RELOCATION SITE</span>
-                    <h4 className="text-sm font-extrabold text-white">{site.name}</h4>
+                    <span className="text-[10px] uppercase font-bold text-teal-600 dark:text-accent-teal">SAFE RELOCATION SITE</span>
+                    <h4 className="text-sm font-extrabold text-slate-900 dark:text-white">{site.name}</h4>
                   </div>
                   <Badge priority="MONITOR" size="sm" />
                 </div>
-                <div className="space-y-1 text-xs text-slate-300 mb-3">
-                  <p><span className="text-slate-400">Safety Score:</span> <span className="font-bold text-accent-teal">{site.safety_score}/100</span></p>
-                  <p><span className="text-slate-400">Total Capacity:</span> <span className="font-bold text-white">{site.population_capacity.toLocaleString()}</span></p>
-                  <p><span className="text-slate-400">Available Buffer:</span> <span className="font-bold text-accent-teal">{(site.population_capacity - site.current_population).toLocaleString()}</span></p>
-                  <p><span className="text-slate-400">Land Area:</span> {site.land_area} ha</p>
+                <div className="space-y-1 text-xs text-slate-600 dark:text-slate-300 mb-3">
+                  <p><span className="text-slate-500 dark:text-slate-400">Safety Score:</span> <span className="font-bold text-teal-600 dark:text-accent-teal">{site.safety_score}/100</span></p>
+                  <p><span className="text-slate-500 dark:text-slate-400">Total Capacity:</span> <span className="font-bold text-slate-900 dark:text-white">{site.population_capacity.toLocaleString()}</span></p>
+                  <p><span className="text-slate-500 dark:text-slate-400">Available Buffer:</span> <span className="font-bold text-teal-600 dark:text-accent-teal">{(site.population_capacity - site.current_population).toLocaleString()}</span></p>
+                  <p><span className="text-slate-500 dark:text-slate-400">Land Area:</span> {site.land_area} ha</p>
                 </div>
                 <button
                   onClick={() => navigate(`/capacity?site_id=${site.id}`)}
-                  className="w-full py-1.5 bg-accent-teal hover:bg-accent-teal/80 text-navy-950 font-bold text-xs rounded-lg transition text-center shadow-md shadow-accent-teal/20"
+                  className="w-full py-1.5 bg-teal-600 hover:bg-teal-500 dark:bg-accent-teal dark:hover:bg-accent-teal/80 text-white dark:text-navy-950 font-bold text-xs rounded-lg transition text-center shadow-xs"
                 >
                   View Capacity Metrics
                 </button>

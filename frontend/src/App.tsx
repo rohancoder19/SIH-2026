@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
 import { LandingPage } from './pages/LandingPage';
 import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
@@ -20,38 +21,40 @@ import { ProtectedRoute } from './routes/ProtectedRoute';
 
 export const App: React.FC = () => {
   return (
-    <Routes>
-      {/* Public Landing & Auth Pages */}
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<LoginPage />} />
+    <ThemeProvider>
+      <Routes>
+        {/* Public Landing & Auth Pages */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
 
-      {/* Protected Dashboard Command Center Routes */}
-      <Route
-        path="/*"
-        element={
-          <ProtectedRoute>
-            <DashboardLayout>
-              <Routes>
-                <Route path="/dashboard" element={<DashboardPage />} />
-                <Route path="/map" element={<GISMapPage />} />
-                <Route path="/habitations" element={<HabitationsPage />} />
-                <Route path="/habitations/:id" element={<HabitationDetailPage />} />
-                <Route path="/hazards" element={<HazardsPage />} />
-                <Route path="/relocation" element={<RelocationEnginePage />} />
-                <Route path="/sites" element={<SafeSitesPage />} />
-                <Route path="/capacity" element={<CarryingCapacityPage />} />
-                <Route path="/analytics" element={<AnalyticsPage />} />
-                <Route path="/reports" element={<ReportsPage />} />
-                <Route path="/data" element={<DataIngestionPage />} />
-                <Route path="/validation" element={<ExpertValidationPage />} />
-                <Route path="/admin" element={<AdminPage />} />
-                <Route path="*" element={<Navigate to="/dashboard" replace />} />
-              </Routes>
-            </DashboardLayout>
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+        {/* Protected Dashboard Command Center Routes */}
+        <Route
+          path="/*"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout>
+                <Routes>
+                  <Route path="/dashboard" element={<DashboardPage />} />
+                  <Route path="/map" element={<GISMapPage />} />
+                  <Route path="/habitations" element={<HabitationsPage />} />
+                  <Route path="/habitations/:id" element={<HabitationDetailPage />} />
+                  <Route path="/hazards" element={<HazardsPage />} />
+                  <Route path="/relocation" element={<RelocationEnginePage />} />
+                  <Route path="/sites" element={<SafeSitesPage />} />
+                  <Route path="/capacity" element={<CarryingCapacityPage />} />
+                  <Route path="/analytics" element={<AnalyticsPage />} />
+                  <Route path="/reports" element={<ReportsPage />} />
+                  <Route path="/data" element={<DataIngestionPage />} />
+                  <Route path="/validation" element={<ExpertValidationPage />} />
+                  <Route path="/admin" element={<AdminPage />} />
+                  <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                </Routes>
+              </DashboardLayout>
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </ThemeProvider>
   );
 };
 

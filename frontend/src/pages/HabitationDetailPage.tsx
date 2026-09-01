@@ -4,7 +4,7 @@ import { api } from '../services/api';
 import { Habitation } from '../types';
 import { Badge } from '../components/Badge';
 import {
-  ArrowLeft, Cpu, ShieldCheck, Flame, Home, AlertTriangle, Activity, BarChart2, Compass
+  ArrowLeft, Cpu, ShieldCheck, Activity
 } from 'lucide-react';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Tooltip } from 'recharts';
 
@@ -46,7 +46,7 @@ export const HabitationDetailPage: React.FC = () => {
   }, [id]);
 
   if (!habitation) {
-    return <div className="p-8 text-center text-slate-400">Loading Habitation Detail...</div>;
+    return <div className="p-8 text-center text-[#64748B]">Loading Habitation Detail...</div>;
   }
 
   const radarData = [
@@ -76,82 +76,82 @@ export const HabitationDetailPage: React.FC = () => {
       {/* Top Navigation */}
       <button
         onClick={() => navigate('/habitations')}
-        className="px-3 py-1.5 bg-navy-850 hover:bg-navy-800 border border-navy-700 rounded-xl text-xs font-bold text-slate-300 transition inline-flex items-center gap-1.5"
+        className="px-3 py-1.5 bg-[#F8FAFC] hover:bg-[#E2E8F0] border border-[#CBD5E1] rounded-xl text-xs font-bold text-[#334155] transition inline-flex items-center gap-1.5 shadow-xs"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Habitations List</span>
       </button>
 
       {/* Main Header Banner */}
-      <div className="bg-navy-900 border border-navy-700/80 rounded-3xl p-6 shadow-xl flex flex-wrap items-center justify-between gap-6">
+      <div className="bg-[#F8FAFC] border border-[#CBD5E1] rounded-2xl p-6 shadow-xs flex flex-wrap items-center justify-between gap-6">
         <div>
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-black text-white">{habitation.name}</h1>
+            <h1 className="text-2xl font-extrabold text-[#0F172A]">{habitation.name}</h1>
             <Badge priority={habitation.relocation_priority} size="lg" />
           </div>
-          <p className="text-xs text-slate-400 mt-1 flex items-center gap-3">
-            <span>District: <strong className="text-slate-200">{habitation.district}</strong></span>
+          <p className="text-xs text-[#64748B] mt-1 flex items-center gap-3">
+            <span>District: <strong className="text-[#0F172A]">{habitation.district}</strong></span>
             <span>•</span>
-            <span>State: <strong className="text-slate-200">{habitation.state}</strong></span>
+            <span>State: <strong className="text-[#0F172A]">{habitation.state}</strong></span>
             <span>•</span>
-            <span>Elevation: <strong className="text-accent-cyan">{habitation.elevation} m</strong></span>
+            <span>Elevation: <strong className="text-[#4F46E5]">{habitation.elevation} m</strong></span>
           </p>
         </div>
 
         <button
           onClick={() => navigate(`/relocation?habitation_id=${habitation.id}`)}
-          className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-accent-blue to-accent-cyan text-navy-950 font-black text-sm tracking-wide shadow-xl shadow-accent-blue/25 hover:scale-105 transition flex items-center gap-2"
+          className="px-6 py-3 rounded-xl bg-[#4F46E5] hover:bg-[#4338CA] text-white font-bold text-sm tracking-wide shadow-xs transition flex items-center gap-2"
         >
-          <ShieldCheck className="w-5 h-5 stroke-[2.5]" />
+          <ShieldCheck className="w-5 h-5" />
           <span>Find Safe Relocation Sites</span>
         </button>
       </div>
 
       {/* 4 Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="p-4 rounded-2xl bg-navy-900 border border-navy-700/80">
-          <p className="text-xs font-semibold text-slate-400">Total Population</p>
-          <p className="text-2xl font-black text-white mt-1">{habitation.population.toLocaleString()}</p>
+        <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-[#CBD5E1] shadow-xs">
+          <p className="text-xs font-bold text-[#64748B]">Total Population</p>
+          <p className="text-2xl font-extrabold text-[#0F172A] mt-1">{habitation.population.toLocaleString()}</p>
         </div>
-        <div className="p-4 rounded-2xl bg-navy-900 border border-accent-red/40 bg-accent-red/10">
-          <p className="text-xs font-semibold text-accent-red">Vulnerable Population</p>
-          <p className="text-2xl font-black text-accent-red mt-1">{habitation.vulnerable_population.toLocaleString()}</p>
+        <div className="p-4 rounded-2xl bg-rose-100/60 border border-rose-300 shadow-xs">
+          <p className="text-xs font-bold text-rose-800">Vulnerable Population</p>
+          <p className="text-2xl font-extrabold text-rose-800 mt-1">{habitation.vulnerable_population.toLocaleString()}</p>
         </div>
-        <div className="p-4 rounded-2xl bg-navy-900 border border-navy-700/80">
-          <p className="text-xs font-semibold text-slate-400">Overall Hazard Score</p>
-          <p className="text-2xl font-black text-accent-amber mt-1">{habitation.hazard_score}/100</p>
+        <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-[#CBD5E1] shadow-xs">
+          <p className="text-xs font-bold text-[#64748B]">Overall Hazard Score</p>
+          <p className="text-2xl font-extrabold text-amber-700 mt-1">{habitation.hazard_score}/100</p>
         </div>
-        <div className="p-4 rounded-2xl bg-navy-900 border border-navy-700/80">
-          <p className="text-xs font-semibold text-slate-400">AI Model Confidence</p>
-          <p className="text-2xl font-black text-accent-teal mt-1">{(mlData?.confidence ? mlData.confidence * 100 : 94)}%</p>
+        <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-[#CBD5E1] shadow-xs">
+          <p className="text-xs font-bold text-[#64748B]">AI Model Confidence</p>
+          <p className="text-2xl font-extrabold text-emerald-800 mt-1">{(mlData?.confidence ? mlData.confidence * 100 : 94)}%</p>
         </div>
       </div>
 
       {/* Grid: Explainable AI Factors & Multi-Hazard Radar Chart */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Explainable AI (XAI) Panel */}
-        <div className="bg-navy-900 border border-navy-700/80 rounded-3xl p-6 shadow-xl space-y-4">
-          <div className="flex items-center gap-2 border-b border-navy-700 pb-3">
-            <Cpu className="w-5 h-5 text-accent-cyan" />
-            <h3 className="text-base font-extrabold text-white">Explainable AI (XAI) Risk Factors</h3>
+        <div className="bg-[#F8FAFC] border border-[#CBD5E1] rounded-2xl p-6 shadow-xs space-y-4">
+          <div className="flex items-center gap-2 border-b border-[#CBD5E1] pb-3">
+            <Cpu className="w-5 h-5 text-[#4F46E5]" />
+            <h3 className="text-base font-bold text-[#0F172A]">Explainable AI (XAI) Risk Factors</h3>
           </div>
 
-          <div className="p-3.5 bg-navy-850 rounded-2xl border border-navy-700/80 text-xs text-slate-300 leading-relaxed">
-            <strong className="text-accent-cyan block mb-1">AI Recommendation Reasoning:</strong>
+          <div className="p-3.5 bg-[#EEF2FF] rounded-xl border border-[#E0E7FF] text-xs text-[#334155] leading-relaxed">
+            <strong className="text-[#4F46E5] block mb-1">AI Recommendation Reasoning:</strong>
             {mlData?.explanation || "High flood exposure combined with high vulnerable population ratio, poor infrastructure, and limited evacuation accessibility."}
           </div>
 
           <div className="space-y-3 pt-2">
-            <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Contributing Risk Factors Breakdown</h4>
+            <h4 className="text-xs font-bold text-[#64748B] uppercase tracking-wider">Contributing Risk Factors Breakdown</h4>
             {Object.entries(xaiFactors).map(([factorName, score]) => (
               <div key={factorName} className="space-y-1">
                 <div className="flex justify-between text-xs font-semibold">
-                  <span className="text-slate-300">{factorName}</span>
-                  <span className="text-accent-amber font-bold">{Number(score)}%</span>
+                  <span className="text-[#334155]">{factorName}</span>
+                  <span className="text-[#4F46E5] font-bold">{Number(score)}%</span>
                 </div>
-                <div className="w-full bg-navy-800 h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-[#E2E8F0] h-2 rounded-full overflow-hidden">
                   <div
-                    className="bg-gradient-to-r from-accent-amber to-accent-red h-full rounded-full transition-all duration-500"
+                    className="bg-[#4F46E5] h-full rounded-full transition-all duration-500"
                     style={{ width: `${Math.min(100, Number(score))}%` }}
                   />
                 </div>
@@ -161,19 +161,19 @@ export const HabitationDetailPage: React.FC = () => {
         </div>
 
         {/* Multi-Hazard Radar Chart */}
-        <div className="bg-navy-900 border border-navy-700/80 rounded-3xl p-6 shadow-xl flex flex-col">
-          <div className="flex items-center gap-2 border-b border-navy-700 pb-3 mb-4">
-            <Activity className="w-5 h-5 text-accent-amber" />
-            <h3 className="text-base font-extrabold text-white">Multi-Hazard Exposure Profile</h3>
+        <div className="bg-[#F8FAFC] border border-[#CBD5E1] rounded-2xl p-6 shadow-xs flex flex-col">
+          <div className="flex items-center gap-2 border-b border-[#CBD5E1] pb-3 mb-4">
+            <Activity className="w-5 h-5 text-[#4F46E5]" />
+            <h3 className="text-base font-bold text-[#0F172A]">Multi-Hazard Exposure Profile</h3>
           </div>
           <div className="h-72 flex-1">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={radarData}>
-                <PolarGrid stroke="#273459" />
-                <PolarAngleAxis dataKey="factor" stroke="#94a3b8" fontSize={11} />
-                <PolarRadiusAxis angle={30} domain={[0, 100]} stroke="#475569" fontSize={10} />
-                <Radar name="Hazard Exposure" dataKey="score" stroke="#ef476f" fill="#ef476f" fillOpacity={0.4} />
-                <Tooltip contentStyle={{ backgroundColor: '#131d38', borderColor: '#273459', borderRadius: '8px' }} />
+                <PolarGrid stroke="#CBD5E1" />
+                <PolarAngleAxis dataKey="factor" stroke="#64748B" fontSize={11} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} stroke="#94A3B8" fontSize={10} />
+                <Radar name="Hazard Exposure" dataKey="score" stroke="#4F46E5" fill="#EEF2FF" fillOpacity={0.7} />
+                <Tooltip contentStyle={{ backgroundColor: '#F8FAFC', borderColor: '#CBD5E1', borderRadius: '10px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }} />
               </RadarChart>
             </ResponsiveContainer>
           </div>

@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
 import { Habitation, RankedRelocationSite } from '../types';
 import { Badge } from '../components/Badge';
-import { ShieldCheck, MapPin, Building2, Navigation, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, MapPin, Building2 } from 'lucide-react';
 
 export const SafeSitesPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -46,26 +46,26 @@ export const SafeSitesPage: React.FC = () => {
   return (
     <div className="p-6 space-y-6 max-w-[1600px] mx-auto">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-navy-700/60 pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#CBD5E1] pb-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
-            <ShieldCheck className="w-6 h-6 text-accent-teal" />
+          <h1 className="text-2xl font-extrabold text-[#0F172A] tracking-tight flex items-center gap-2">
+            <ShieldCheck className="w-6 h-6 text-emerald-800" />
             <span>Safe Relocation Site Recommendation Engine</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#64748B] mt-1">
             Multi-Criteria Decision Analysis (MCDA) ranking suitable high-plateau relocation sites
           </p>
         </div>
       </div>
 
       {/* Target Habitation Selector */}
-      <div className="bg-navy-900 border border-navy-700/80 rounded-3xl p-5 flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-[#F8FAFC] border border-[#CBD5E1] rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4 shadow-xs">
         <div className="flex items-center gap-3">
-          <span className="text-xs font-bold text-slate-300">Select Vulnerable Settlement:</span>
+          <span className="text-xs font-bold text-[#334155]">Select Vulnerable Settlement:</span>
           <select
             value={selectedHabId}
             onChange={(e) => setSelectedHabId(Number(e.target.value))}
-            className="bg-navy-850 border border-navy-700 rounded-xl px-4 py-2 text-xs font-bold text-white focus:outline-none focus:border-accent-cyan cursor-pointer"
+            className="bg-[#E2E8F0]/70 border border-[#CBD5E1] rounded-xl px-4 py-2 text-xs font-bold text-[#0F172A] focus:outline-none focus:border-[#4F46E5] cursor-pointer"
           >
             {habitations.map((h) => (
               <option key={h.id} value={h.id}>
@@ -77,16 +77,16 @@ export const SafeSitesPage: React.FC = () => {
 
         {activeHab && (
           <div className="flex items-center gap-3 text-xs">
-            <span className="text-slate-400">Vulnerable Pop: <strong className="text-accent-red">{activeHab.vulnerable_population.toLocaleString()}</strong></span>
+            <span className="text-[#64748B]">Vulnerable Pop: <strong className="text-rose-700">{activeHab.vulnerable_population.toLocaleString()}</strong></span>
             <span>•</span>
             <Badge priority={activeHab.relocation_priority} size="sm" />
           </div>
         )}
       </div>
 
-      {/* Ranked Safe Site Cards (#1 Site A, #2 Site B, #3 Site C) */}
+      {/* Ranked Safe Site Cards */}
       <div className="space-y-4">
-        <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider">
+        <h3 className="text-xs font-extrabold text-[#64748B] uppercase tracking-wider">
           Ranked Relocation Sites for {activeHab?.name || 'Selected Settlement'}
         </h3>
 
@@ -96,58 +96,58 @@ export const SafeSitesPage: React.FC = () => {
             return (
               <div
                 key={site.site_id}
-                className={`rounded-3xl p-6 border transition-all flex flex-col justify-between ${
+                className={`rounded-2xl p-6 border transition-all flex flex-col justify-between shadow-xs ${
                   isTop
-                    ? 'bg-navy-900 border-accent-teal shadow-2xl ring-1 ring-accent-teal/50'
-                    : 'bg-navy-900 border-navy-700/80 hover:border-navy-600'
+                    ? 'bg-emerald-100/50 border-emerald-300'
+                    : 'bg-[#F8FAFC] border-[#CBD5E1]'
                 }`}
               >
                 <div>
                   {/* Rank Header */}
                   <div className="flex items-center justify-between mb-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-black ${isTop ? 'bg-accent-teal text-navy-950 shadow-md shadow-accent-teal/20' : 'bg-navy-800 text-slate-300'}`}>
+                    <span className={`px-3 py-1 rounded-full text-xs font-extrabold ${isTop ? 'bg-emerald-700 text-white' : 'bg-[#E2E8F0] text-[#334155]'}`}>
                       #{index + 1} {isTop ? 'TOP MATCH' : 'SUITABLE'}
                     </span>
-                    <span className="text-2xl font-black text-accent-cyan">{site.overall_score}<span className="text-xs text-slate-400">/100</span></span>
+                    <span className="text-2xl font-extrabold text-[#4F46E5]">{site.overall_score}<span className="text-xs text-[#64748B]">/100</span></span>
                   </div>
 
-                  <h3 className="text-lg font-extrabold text-white mb-1">{site.site_name}</h3>
-                  <p className="text-xs text-slate-400 mb-4 flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-accent-cyan" />
+                  <h3 className="text-lg font-extrabold text-[#0F172A] mb-1">{site.site_name}</h3>
+                  <p className="text-xs text-[#64748B] mb-4 flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 text-[#4F46E5]" />
                     <span>{site.district} District • {site.distance_km} km away</span>
                   </p>
 
                   {/* Factor Ratings */}
-                  <div className="space-y-2 bg-navy-850 p-3.5 rounded-2xl border border-navy-700 text-xs mb-4">
+                  <div className="space-y-2 bg-[#E2E8F0]/60 p-3.5 rounded-xl border border-[#CBD5E1] text-xs mb-4">
                     <div className="flex justify-between">
-                      <span className="text-slate-400">Safety Score (30%):</span>
-                      <span className="font-bold text-accent-teal">{site.safety_score}/100</span>
+                      <span className="text-[#64748B]">Safety Score (30%):</span>
+                      <span className="font-bold text-emerald-800">{site.safety_score}/100</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-400">Available Buffer (20%):</span>
-                      <span className="font-bold text-white">{site.available_capacity.toLocaleString()} seats</span>
+                      <span className="text-[#64748B]">Available Buffer (20%):</span>
+                      <span className="font-bold text-[#0F172A]">{site.available_capacity.toLocaleString()} seats</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-400">Evacuation Access (15%):</span>
-                      <span className="font-bold text-slate-200">{site.accessibility_score}/100</span>
+                      <span className="text-[#64748B]">Evacuation Access (15%):</span>
+                      <span className="font-bold text-[#334155]">{site.accessibility_score}/100</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-400">Infrastructure (15%):</span>
-                      <span className="font-bold text-slate-200">{site.infrastructure_score}/100</span>
+                      <span className="text-[#64748B]">Infrastructure (15%):</span>
+                      <span className="font-bold text-[#334155]">{site.infrastructure_score}/100</span>
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-300 italic mb-4">
+                  <p className="text-xs text-[#334155] italic mb-4">
                     "{site.recommendation_reason}"
                   </p>
                 </div>
 
                 <button
                   onClick={() => navigate(`/capacity?site_id=${site.site_id}`)}
-                  className={`w-full py-2.5 rounded-xl font-bold text-xs transition flex items-center justify-center gap-2 ${
+                  className={`w-full py-2.5 rounded-xl font-bold text-xs transition flex items-center justify-center gap-2 shadow-xs ${
                     isTop
-                      ? 'bg-accent-teal text-navy-950 hover:bg-accent-teal/90 shadow-lg shadow-accent-teal/20'
-                      : 'bg-navy-850 hover:bg-navy-800 border border-navy-700 text-slate-200'
+                      ? 'bg-[#4F46E5] text-white hover:bg-[#4338CA]'
+                      : 'bg-[#E2E8F0] hover:bg-[#CBD5E1] border border-[#CBD5E1] text-[#334155]'
                   }`}
                 >
                   <Building2 className="w-4 h-4" />

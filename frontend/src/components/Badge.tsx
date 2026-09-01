@@ -10,21 +10,21 @@ interface BadgeProps {
 export const Badge: React.FC<BadgeProps> = ({ priority, severity, size = 'md' }) => {
   const val = (priority || severity || '').toUpperCase();
   
-  let bgClass = 'bg-slate-700 text-slate-200 border-slate-600';
-  let dotColor = 'bg-slate-400';
+  let bgClass = 'bg-[#F1F5F9] text-[#334155] border-[#E2E8F0]';
+  let dotColor = 'bg-[#64748B]';
 
   if (val === 'IMMEDIATE' || val === 'CRITICAL' || val === 'VERY HIGH') {
-    bgClass = 'bg-accent-red/15 text-accent-red border-accent-red/40 shadow-sm shadow-accent-red/20';
-    dotColor = 'bg-accent-red animate-pulse';
+    bgClass = 'bg-rose-50 text-rose-700 border-rose-200 font-semibold';
+    dotColor = 'bg-rose-500 animate-pulse';
   } else if (val === 'SHORT_TERM' || val === 'SHORT-TERM' || val === 'HIGH') {
-    bgClass = 'bg-accent-orange/15 text-accent-orange border-accent-orange/40';
-    dotColor = 'bg-accent-orange';
+    bgClass = 'bg-amber-50 text-amber-700 border-amber-200 font-semibold';
+    dotColor = 'bg-amber-500';
   } else if (val === 'MEDIUM_TERM' || val === 'MEDIUM-TERM' || val === 'MODERATE') {
-    bgClass = 'bg-accent-amber/15 text-accent-amber border-accent-amber/40';
-    dotColor = 'bg-accent-amber';
+    bgClass = 'bg-indigo-50 text-indigo-700 border-indigo-200 font-semibold';
+    dotColor = 'bg-indigo-500';
   } else if (val === 'MONITOR' || val === 'LOW' || val === 'SAFE' || val === 'SUITABLE' || val === 'HIGHLY_SUITABLE') {
-    bgClass = 'bg-accent-teal/15 text-accent-teal border-accent-teal/40';
-    dotColor = 'bg-accent-teal';
+    bgClass = 'bg-emerald-50 text-emerald-700 border-emerald-200 font-semibold';
+    dotColor = 'bg-emerald-500';
   }
 
   const sizeClasses = {
