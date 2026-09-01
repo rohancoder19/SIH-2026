@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Search, Bell, MapPin, User, ChevronDown, Activity, LogOut } from 'lucide-react';
+import { Search, Bell, MapPin, User, ChevronDown, Activity, LogOut, Shield } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import { flyToLocation } from '../store/gisSlice';
-import { logout } from '../store/authSlice';
+import { logout, setCredentials } from '../store/authSlice';
+import { UserRole } from '../types';
 import { useNavigate } from 'react-router-dom';
 
 export const Header: React.FC = () => {
@@ -37,6 +38,13 @@ export const Header: React.FC = () => {
     if (foundLoc) {
       dispatch(flyToLocation({ center: searchMap[foundLoc], zoom: 13 }));
       navigate('/map');
+    }
+  };
+
+  const handleRoleSwitch = (newRole: UserRole) => {
+    if (user) {
+      const updatedUser = { ...user, role: newRole };
+      dispatch(setCredentials({ user: updatedUser, token: 'demo-token' }));
     }
   };
 
@@ -77,8 +85,24 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Right Controls */}
+      {/* Right Controls & Quick Role Switcher */}
       <div className="flex items-center gap-3">
+        {/* Role Selector Badge for Judges */}
+        <div className="hidden lg:flex items-center gap-1.5 px-3 py-1 bg-[#EEF2FF] border border-[#E0E7FF] rounded-xl text-xs font-bold text-[#4F46E5]">
+          <Shield className="w-3.5 h-3.5 text-[#4F46E5]" />
+          <span className="text-[10px] uppercase text-[#64748B]">Role:</span>
+          <select
+            value={user?.role || 'Expert'}
+            onChange={(e) => handleRoleSwitch(e.target.value as UserRole)}
+            className="bg-transparent focus:outline-none font-extrabold text-[#4F46E5] cursor-pointer"
+          >
+            <option value="Admin">Admin</option>
+            <option value="Expert">Expert Validator</option>
+            <option value="Official">NDMA Officer</option>
+            <option value="Public">Citizen View</option>
+          </select>
+        </div>
+
         {/* Notifications */}
         <div className="relative">
           <button 
