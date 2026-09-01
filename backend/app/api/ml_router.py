@@ -20,8 +20,11 @@ class PredictionRequest(BaseModel):
 
 @router.post("/predict")
 def predict_relocation_priority(payload: PredictionRequest):
-    res = ml_engine.predict(payload.dict())
+    res = ml_engine.predict(payload.model_dump())
+    res["relocation_priority"] = res.get("predicted_priority", "IMMEDIATE")
+    res["contributing_factors"] = {x["feature"]: x["impact_score"] for x in res.get("xai_feature_attributions", [])}
     return res
+
 
 @router.get("/gemini-analysis/{habitation_id}")
 def analyze_with_gemini_ai(habitation_id: int, db: Session = Depends(get_db)):

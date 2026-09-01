@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
 from typing import Optional, List, Dict, Any
 from datetime import datetime
 
@@ -43,9 +43,7 @@ class HabitationCreate(HabitationBase):
 class HabitationOut(HabitationBase):
     id: int
     created_at: datetime
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # Hazard Zone Schemas
 class HazardZoneBase(BaseModel):
@@ -60,9 +58,7 @@ class HazardZoneBase(BaseModel):
 class HazardZoneOut(HazardZoneBase):
     id: int
     updated_at: datetime
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # Relocation Site Schemas
 class RelocationSiteBase(BaseModel):
@@ -84,9 +80,7 @@ class RelocationSiteBase(BaseModel):
 
 class RelocationSiteOut(RelocationSiteBase):
     id: int
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # ML Schemas
 class MLPredictionInput(BaseModel):
@@ -132,6 +126,57 @@ class ValidationOut(BaseModel):
     decision: str
     comments: Optional[str]
     created_at: datetime
+    model_config = ConfigDict(from_attributes=True)
 
-    class Config:
-        from_attributes = True
+# SIH 2026 Problem Statement Schemas
+class ReferenceLink(BaseModel):
+    title: str
+    url: str
+
+class SIHProblemBase(BaseModel):
+    id: str
+    serial_no: Optional[int] = None
+    title: str
+    organization: str
+    department: Optional[str] = None
+    category: str = "Software"
+    theme: str = "General"
+    description: str
+    background: Optional[str] = None
+    expected_solution: Optional[str] = None
+    deadline: Optional[str] = None
+    submitted_ideas: Optional[str] = None
+    references: Optional[List[ReferenceLink]] = []
+    source_url: str
+    scraped_at: Optional[str] = None
+
+class SIHProblemOut(SIHProblemBase):
+    model_config = ConfigDict(from_attributes=True)
+
+class ScraperStatusResponse(BaseModel):
+    status: str
+    total_problems: int
+    last_scraped: Optional[str] = None
+    source: str
+    cache_age: str
+    cache_age_seconds: Optional[int] = None
+    is_cached: bool = False
+    is_fresh: bool = False
+    error_message: Optional[str] = None
+
+class ProblemStats(BaseModel):
+    total_problems: int
+    software_count: int
+    hardware_count: int
+    theme_count: int
+    organization_count: int
+    themes: List[Dict[str, Any]]
+    categories: List[Dict[str, Any]]
+    organizations: List[Dict[str, Any]]
+
+class HealthResponse(BaseModel):
+    status: str
+    scraper: str
+    database: str
+    total_problems_in_cache: int
+    timestamp: str

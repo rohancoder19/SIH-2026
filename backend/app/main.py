@@ -1,3 +1,7 @@
+import asyncio
+import logging
+import os
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config.settings import settings
@@ -17,14 +21,48 @@ from app.api.gis_router import router as gis_router
 from app.api.validation_router import router as validation_router
 from app.api.reports_router import router as reports_router
 from app.api.admin_router import router as admin_router
+from app.scraper.disaster_scraper import disaster_scraper
+
+logger = logging.getLogger("surakshitsthan.main")
 
 # Create Database Tables
 Base.metadata.create_all(bind=engine)
 
+async def _warmup_scraper_cache():
+    """
+    Asynchronously warms up the Live Disaster & Hazard Intelligence cache on startup.
+    """
+    if os.getenv("TESTING") == "1" or os.getenv("PYTEST_CURRENT_TEST"):
+        logger.info("[STARTUP] Testing environment detected. Skipping automatic scraper network warmup.")
+        return
+    try:
+        logger.info("[STARTUP] Initializing Live Disaster & Hazard Intelligence scraper (USGS, GDACS, CWC)...")
+        await disaster_scraper.scrape_all_hazards()
+        logger.info("[STARTUP] Live Disaster Hazard cache initialization finished.")
+    except Exception as e:
+        logger.warning(f"[STARTUP] Scraper warm-up non-critical notice: {e}")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # 1. Seed database with demo scenarios
+    db = SessionLocal()
+    try:
+        seed_database(db)
+    except Exception as e:
+        logger.warning(f"Database seed notice: {e}")
+    finally:
+        db.close()
+
+    # 2. Warm up live disaster scraper cache asynchronously
+    asyncio.create_task(_warmup_scraper_cache())
+
+    yield
+
 app = FastAPI(
     title=settings.PROJECT_NAME,
-    description="AI-Powered GIS Decision-Support Platform for Multi-Hazard Risk & Safe Relocation Planning",
-    version="2.4.0"
+    description="AI-Powered GIS Decision-Support Platform with Live Multi-Hazard Disaster Intelligence Scraper",
+    version="2.4.0",
+    lifespan=lifespan
 )
 
 # Enable CORS for frontend development
@@ -35,15 +73,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-@app.on_event("startup")
-def on_startup():
-    # Seed database with Darjeeling / Kalimpong demo dataset on startup
-    db = SessionLocal()
-    try:
-        seed_database(db)
-    finally:
-        db.close()
 
 # Include API Routers
 app.include_router(auth_router)
@@ -65,7 +94,9 @@ def root():
         "title": settings.PROJECT_NAME,
         "status": "ONLINE",
         "docs": "/docs",
-        "message": "Welcome to SurakshitSthan AI - Multi-Hazard GIS & Safe Relocation Command Platform"
+        "disaster_scraper": "/api/hazards/status",
+        "hazards_geojson": "/api/hazards/geojson",
+        "message": "Welcome to SurakshitSthan AI - Multi-Hazard GIS & Live Disaster Intelligence Command Center"
     }
 
 if __name__ == "__main__":
