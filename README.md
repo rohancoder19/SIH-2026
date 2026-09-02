@@ -12,21 +12,21 @@
 
 ```mermaid
 graph TD
-    subgraph Data & Scraper Layer
+    subgraph DataLayer ["Data & Scraper Layer"]
         USGS["USGS Seismic Feed"] --> Aggregator["National Multi-Hazard Scraper<br/>(httpx + Async Cron Loop)"]
         GDACS["GDACS RSS Alert Feed"] --> Aggregator
         NDMA["NDMA Advisories Feed"] --> Aggregator
         CWC["CWC River Station Feed"] --> Aggregator
     end
 
-    subgraph Backend Core (FastAPI)
+    subgraph BackendCore ["Backend Core (FastAPI)"]
         Aggregator --> GeoTransformer["Spatial Transformer & Geodesic Math<br/>(Point-in-Polygon & Radial Buffer)"]
         GeoTransformer --> CacheDB["Thread-Safe Cache & SQLite/PostGIS DB"]
         CacheDB --> MLEngine["ML Risk Engine & Relocation Selector<br/>(Scikit-Learn Random Forest)"]
         MLEngine --> APIRoutes["FastAPI REST Routers<br/>(/api/gis, /api/risk, /api/relocation, /api/scrape)"]
     end
 
-    subgraph Frontend Command Center (React + Vite + Leaflet)
+    subgraph FrontendCommandCenter ["Frontend Command Center (React + Vite + Leaflet)"]
         APIRoutes --> TopBar["Executive Governance Bar<br/>(National Macro | State Micro | Citizen Portal)"]
         APIRoutes --> GISMap["Multi-Layer Leaflet Engine<br/>(Choropleth + Spatial Clusters + Buffer Search)"]
         APIRoutes --> Telemetry["Real-time Telemetry Bar & Analytics Charts"]
