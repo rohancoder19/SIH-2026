@@ -29,8 +29,6 @@ def get_relocation_recommendations(habitation_id: int, db: Session = Depends(get
             "longitude": s.longitude,
             "land_area": s.land_area,
             "available_area": s.available_area,
-            "population_capacity": s.population_capacity,
-            "current_population": s.current_population,
             "safety_score": s.safety_score,
             "accessibility_score": s.accessibility_score,
             "infrastructure_score": s.infrastructure_score,
@@ -42,8 +40,7 @@ def get_relocation_recommendations(habitation_id: int, db: Session = Depends(get
         "id": hab.id,
         "name": hab.name,
         "latitude": hab.latitude,
-        "longitude": hab.longitude,
-        "vulnerable_population": hab.vulnerable_population
+        "longitude": hab.longitude
     }
     
     ranked_sites = relocation_service.calculate_site_recommendations(hab_dict, sites_data)
@@ -53,8 +50,6 @@ def get_relocation_recommendations(habitation_id: int, db: Session = Depends(get
             "id": hab.id,
             "name": hab.name,
             "district": hab.district,
-            "population": hab.population,
-            "vulnerable_population": hab.vulnerable_population,
             "priority": hab.relocation_priority,
             "latitude": hab.latitude,
             "longitude": hab.longitude
@@ -84,8 +79,6 @@ def simulate_relocation_plan(req: Optional[SimulationRequest] = None, db: Sessio
             "district": h.district,
             "latitude": h.latitude,
             "longitude": h.longitude,
-            "population": h.population,
-            "vulnerable_population": h.vulnerable_population,
             "relocation_priority": h.relocation_priority or "SHORT_TERM",
             "hazard_score": h.hazard_score or 50.0
         } for h in habitations
@@ -98,8 +91,8 @@ def simulate_relocation_plan(req: Optional[SimulationRequest] = None, db: Sessio
             "district": s.district,
             "latitude": s.latitude,
             "longitude": s.longitude,
-            "population_capacity": s.population_capacity,
-            "current_population": s.current_population,
+            "land_area": s.land_area,
+            "available_area": s.available_area,
             "safety_score": s.safety_score,
             "accessibility_score": s.accessibility_score,
             "infrastructure_score": s.infrastructure_score,

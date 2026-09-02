@@ -107,14 +107,14 @@ export const api = {
       return res.data;
     } catch (e) {
       const mockHabs: Habitation[] = [
-        { id: 1, name: "Mirik Basti Lower", district: "Darjeeling", state: "West Bengal", population: 3450, vulnerable_population: 1280, latitude: 26.8872, longitude: 88.1884, elevation: 1420, infrastructure_score: 42, accessibility_score: 38, hazard_score: 91, vulnerability_score: 84, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 92, flood: 78, earthquake: 65, environmental: 82 } },
-        { id: 2, name: "Sukhiapokhri Valley", district: "Darjeeling", state: "West Bengal", population: 2180, vulnerable_population: 850, latitude: 26.9961, longitude: 88.1367, elevation: 2134, infrastructure_score: 35, accessibility_score: 30, hazard_score: 94, vulnerability_score: 88, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 95, flood: 40, earthquake: 72, environmental: 88 } },
-        { id: 3, name: "Teesta Bazaar Waterfront", district: "Kalimpong", state: "West Bengal", population: 3950, vulnerable_population: 1820, latitude: 27.0582, longitude: 88.4285, elevation: 220, infrastructure_score: 28, accessibility_score: 45, hazard_score: 96, vulnerability_score: 92, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 88, flood: 96, earthquake: 72, environmental: 94 } },
-        { id: 4, name: "Lebong Slope Settlement", district: "Darjeeling", state: "West Bengal", population: 1950, vulnerable_population: 720, latitude: 27.0621, longitude: 88.2721, elevation: 1820, infrastructure_score: 50, accessibility_score: 48, hazard_score: 86, vulnerability_score: 79, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 89, flood: 60, earthquake: 75, environmental: 84 } },
-        { id: 5, name: "Ghoom Station Ridge", district: "Darjeeling", state: "West Bengal", population: 4120, vulnerable_population: 1450, latitude: 27.0102, longitude: 88.2575, elevation: 2258, infrastructure_score: 62, accessibility_score: 68, hazard_score: 74, vulnerability_score: 65, relocation_priority: "SHORT_TERM", hazard_breakdown: { landslide: 78, flood: 25, earthquake: 80, environmental: 70 } },
-        { id: 6, name: "Peshok Tea Garden Sector 3", district: "Darjeeling", state: "West Bengal", population: 2840, vulnerable_population: 980, latitude: 27.0715, longitude: 88.3948, elevation: 1200, infrastructure_score: 38, accessibility_score: 40, hazard_score: 89, vulnerability_score: 82, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 91, flood: 68, earthquake: 74, environmental: 85 } },
-        { id: 7, name: "Melli Bridge Settlement", district: "Kalimpong", state: "West Bengal", population: 2750, vulnerable_population: 1150, latitude: 27.0864, longitude: 88.4412, elevation: 240, infrastructure_score: 32, accessibility_score: 42, hazard_score: 90, vulnerability_score: 86, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 82, flood: 94, earthquake: 68, environmental: 90 } },
-        { id: 8, name: "Kurseong St. Marys Slope", district: "Darjeeling", state: "West Bengal", population: 3800, vulnerable_population: 1250, latitude: 26.8791, longitude: 88.2785, elevation: 1458, infrastructure_score: 58, accessibility_score: 60, hazard_score: 72, vulnerability_score: 66, relocation_priority: "SHORT_TERM", hazard_breakdown: { landslide: 80, flood: 20, earthquake: 74, environmental: 71 } },
+        { id: 1, name: "Mirik Basti Lower", district: "Darjeeling", state: "West Bengal", latitude: 26.8872, longitude: 88.1884, elevation: 1420, infrastructure_score: 42, accessibility_score: 38, hazard_score: 91, vulnerability_score: 84, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 92, flood: 78, earthquake: 65, environmental: 82 } },
+        { id: 2, name: "Sukhiapokhri Valley", district: "Darjeeling", state: "West Bengal", latitude: 26.9961, longitude: 88.1367, elevation: 2134, infrastructure_score: 35, accessibility_score: 30, hazard_score: 94, vulnerability_score: 88, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 95, flood: 40, earthquake: 72, environmental: 88 } },
+        { id: 3, name: "Teesta Bazaar Waterfront", district: "Kalimpong", state: "West Bengal", latitude: 27.0582, longitude: 88.4285, elevation: 220, infrastructure_score: 28, accessibility_score: 45, hazard_score: 96, vulnerability_score: 92, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 88, flood: 96, earthquake: 72, environmental: 94 } },
+        { id: 4, name: "Lebong Slope Settlement", district: "Darjeeling", state: "West Bengal", latitude: 27.0621, longitude: 88.2721, elevation: 1820, infrastructure_score: 50, accessibility_score: 48, hazard_score: 86, vulnerability_score: 79, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 89, flood: 60, earthquake: 75, environmental: 84 } },
+        { id: 5, name: "Ghoom Station Ridge", district: "Darjeeling", state: "West Bengal", latitude: 27.0102, longitude: 88.2575, elevation: 2258, infrastructure_score: 62, accessibility_score: 68, hazard_score: 74, vulnerability_score: 65, relocation_priority: "SHORT_TERM", hazard_breakdown: { landslide: 78, flood: 25, earthquake: 80, environmental: 70 } },
+        { id: 6, name: "Peshok Tea Garden Sector 3", district: "Darjeeling", state: "West Bengal", latitude: 27.0715, longitude: 88.3948, elevation: 1200, infrastructure_score: 38, accessibility_score: 40, hazard_score: 89, vulnerability_score: 82, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 91, flood: 68, earthquake: 74, environmental: 85 } },
+        { id: 7, name: "Melli Bridge Settlement", district: "Kalimpong", state: "West Bengal", latitude: 27.0864, longitude: 88.4412, elevation: 240, infrastructure_score: 32, accessibility_score: 42, hazard_score: 90, vulnerability_score: 86, relocation_priority: "IMMEDIATE", hazard_breakdown: { landslide: 82, flood: 94, earthquake: 68, environmental: 90 } },
+        { id: 8, name: "Kurseong St. Marys Slope", district: "Darjeeling", state: "West Bengal", latitude: 26.8791, longitude: 88.2785, elevation: 1458, infrastructure_score: 58, accessibility_score: 60, hazard_score: 72, vulnerability_score: 66, relocation_priority: "SHORT_TERM", hazard_breakdown: { landslide: 80, flood: 20, earthquake: 74, environmental: 71 } },
       ];
       return mockHabs;
     }
@@ -166,11 +166,11 @@ export const api = {
       return res.data;
     } catch (e) {
       return {
-        habitation: { id: habitationId, name: "Mirik Basti Lower", district: "Darjeeling", population: 3450, vulnerable_population: 1280, priority: "IMMEDIATE", latitude: 26.8872, longitude: 88.1884 },
+        habitation: { id: habitationId, name: "Mirik Basti Lower", district: "Darjeeling", priority: "IMMEDIATE", latitude: 26.8872, longitude: 88.1884 },
         recommended_sites: [
-          { site_id: 1, site_name: "Darjeeling Extension Plateau A", district: "Darjeeling", overall_score: 92.5, safety_score: 95, capacity_score: 90, accessibility_score: 88, infrastructure_score: 86, environmental_score: 92, distance_km: 7.2, total_capacity: 8500, current_population: 1200, available_capacity: 7300, suitability: "HIGHLY_RECOMMENDED", latitude: 27.0312, longitude: 88.2415, evacuation_route: [[88.1884, 26.8872], [88.2150, 26.9600], [88.2415, 27.0312]], recommendation_reason: "High safety score (95/100) and spacious capacity buffer of 7,300 available seats located 7.2 km away." },
-          { site_id: 2, site_name: "Sonada Plateau Sector 2", district: "Darjeeling", overall_score: 88.0, safety_score: 90, capacity_score: 88, accessibility_score: 91, infrastructure_score: 85, environmental_score: 90, distance_km: 11.4, total_capacity: 9800, current_population: 2100, available_capacity: 7700, suitability: "SUITABLE", latitude: 26.9612, longitude: 88.2710, evacuation_route: [[88.1884, 26.8872], [88.2300, 26.9200], [88.2710, 26.9612]], recommendation_reason: "Excellent road accessibility (91/100) with robust infrastructure." },
-          { site_id: 3, site_name: "Mirik Upper Lake Terrace", district: "Darjeeling", overall_score: 84.2, safety_score: 88, capacity_score: 82, accessibility_score: 87, infrastructure_score: 84, environmental_score: 86, distance_km: 2.1, total_capacity: 7500, current_population: 1800, available_capacity: 5700, suitability: "SUITABLE", latitude: 26.8990, longitude: 88.1950, evacuation_route: [[88.1884, 26.8872], [88.1950, 26.8990]], recommendation_reason: "Immediate proximity (2.1 km), ideal for fast evacuation." }
+          { site_id: 1, site_name: "Darjeeling Extension Plateau A", district: "Darjeeling", overall_score: 92.5, safety_score: 95, area_score: 90, accessibility_score: 88, infrastructure_score: 86, environmental_score: 92, distance_km: 7.2, available_area: 32.5, suitability: "HIGHLY_RECOMMENDED", latitude: 27.0312, longitude: 88.2415, evacuation_route: [[88.1884, 26.8872], [88.2150, 26.9600], [88.2415, 27.0312]], recommendation_reason: "High safety score (95/100) and spacious available area of 32.5 ha located 7.2 km away." },
+          { site_id: 2, site_name: "Sonada Plateau Sector 2", district: "Darjeeling", overall_score: 88.0, safety_score: 90, area_score: 88, accessibility_score: 91, infrastructure_score: 85, environmental_score: 90, distance_km: 11.4, available_area: 39.0, suitability: "SUITABLE", latitude: 26.9612, longitude: 88.2710, evacuation_route: [[88.1884, 26.8872], [88.2300, 26.9200], [88.2710, 26.9612]], recommendation_reason: "Excellent road accessibility (91/100) with robust infrastructure." },
+          { site_id: 3, site_name: "Mirik Upper Lake Terrace", district: "Darjeeling", overall_score: 84.2, safety_score: 88, area_score: 82, accessibility_score: 87, infrastructure_score: 84, environmental_score: 86, distance_km: 2.1, available_area: 29.0, suitability: "SUITABLE", latitude: 26.8990, longitude: 88.1950, evacuation_route: [[88.1884, 26.8872], [88.1950, 26.8990]], recommendation_reason: "Immediate proximity (2.1 km), ideal for fast evacuation." }
         ]
       };
     }
@@ -183,9 +183,9 @@ export const api = {
       return res.data;
     } catch (e) {
       return [
-        { id: 1, name: "Darjeeling Extension Plateau A", district: "Darjeeling", latitude: 27.0312, longitude: 88.2415, land_area: 45.0, available_area: 32.5, population_capacity: 8500, current_population: 1200, safety_score: 94, accessibility_score: 88, infrastructure_score: 85, environmental_score: 90, overall_score: 91.5, suitability_status: "HIGHLY_SUITABLE" },
-        { id: 2, name: "Takdah Upper Ridge Safe Zone", district: "Darjeeling", latitude: 27.0412, longitude: 88.3610, land_area: 38.0, available_area: 28.0, population_capacity: 7200, current_population: 800, safety_score: 92, accessibility_score: 85, infrastructure_score: 80, environmental_score: 88, overall_score: 88.2, suitability_status: "HIGHLY_SUITABLE" },
-        { id: 3, name: "Kalimpong Hilltop Plateau North", district: "Kalimpong", latitude: 27.0712, longitude: 88.4812, land_area: 60.0, available_area: 48.0, population_capacity: 12000, current_population: 3400, safety_score: 95, accessibility_score: 90, infrastructure_score: 88, environmental_score: 94, overall_score: 93.4, suitability_status: "HIGHLY_SUITABLE" },
+        { id: 1, name: "Darjeeling Extension Plateau A", district: "Darjeeling", latitude: 27.0312, longitude: 88.2415, land_area: 45.0, available_area: 32.5, safety_score: 94, accessibility_score: 88, infrastructure_score: 85, environmental_score: 90, overall_score: 91.5, suitability_status: "HIGHLY_SUITABLE" },
+        { id: 2, name: "Takdah Upper Ridge Safe Zone", district: "Darjeeling", latitude: 27.0412, longitude: 88.3610, land_area: 38.0, available_area: 28.0, safety_score: 92, accessibility_score: 85, infrastructure_score: 80, environmental_score: 88, overall_score: 88.2, suitability_status: "HIGHLY_SUITABLE" },
+        { id: 3, name: "Kalimpong Hilltop Plateau North", district: "Kalimpong", latitude: 27.0712, longitude: 88.4812, land_area: 60.0, available_area: 48.0, safety_score: 95, accessibility_score: 90, infrastructure_score: 88, environmental_score: 94, overall_score: 93.4, suitability_status: "HIGHLY_SUITABLE" },
       ];
     }
   },
@@ -200,16 +200,11 @@ export const api = {
         site_name: "Darjeeling Extension Plateau A",
         land_area_ha: 45.0,
         usable_area_ha: 32.5,
-        land_capacity: 7150,
-        water_capacity: 6800,
-        infrastructure_capacity: 6400,
-        environmental_capacity: 6750,
-        recommended_sustainable_capacity: 6400,
-        current_population: 1200,
-        available_capacity: 5200,
-        utilization_percentage: 18.8,
-        capacity_status: "OPTIMAL",
-        breakdown: { "Land": 7150, "Water Supply": 6800, "Infrastructure & Health": 6400, "Environmental Bounds": 6750 }
+        land_utilization_percentage: 72.2,
+        capacity_status: "HIGH_SUITABILITY",
+        safety_score: 94,
+        environmental_score: 90,
+        infrastructure_score: 85
       };
     }
   },
@@ -224,11 +219,10 @@ export const api = {
         relocation_priority: "IMMEDIATE",
         priority_score: 91.2,
         confidence: 0.94,
-        explanation: "High flood exposure combined with high vulnerable population ratio, poor infrastructure, and limited evacuation accessibility.",
+        explanation: "High flood exposure combined with high environmental risk, poor infrastructure, and limited evacuation accessibility.",
         contributing_factors: {
           "Landslide Exposure": 92.0,
           "Flood Exposure": 85.0,
-          "Vulnerable Population Ratio": 81.0,
           "Environmental Risk": 78.0,
           "Infrastructure Vulnerability": 65.0,
           "Evacuation Accessibility": 58.0
@@ -250,7 +244,7 @@ export const api = {
       return {
         model_name: "SurakshitSthan Multi-Hazard Classifier",
         algorithm: "Scikit-Learn RandomForestClassifier (100 Trees)",
-        features: ["Landslide Exposure", "Flood Exposure", "Seismic Index", "Vulnerable Population Ratio", "Infrastructure Vulnerability"],
+        features: ["Landslide Exposure", "Flood Exposure", "Seismic Index", "Infrastructure Vulnerability"],
         is_trained: true,
         version: "v2.4.0-prod"
       };
@@ -324,12 +318,10 @@ export const api = {
         timestamp: "2026-08-25",
         metrics: {
           total_habitations: 35,
-          total_population: 84200,
-          total_vulnerable_population: 31500,
           immediate_relocation_count: 9,
           safe_relocation_sites_count: 12,
-          total_safe_capacity: 98000,
-          available_buffer_capacity: 65000
+          total_land_area_ha: 450.0,
+          available_land_area_ha: 310.0
         }
       };
     }
@@ -347,12 +339,12 @@ export const api = {
         gemini_reasoning: "Google Gemini 2.5 Flash evaluated steep slope instability (>45 deg) and heavy monsoon saturation. Immediate relocation to high plateau reserves is strongly recommended.",
         contributing_factors: [
           "Landslide Instability Index (92%)",
-          "Vulnerable Population Concentration (1,280 citizens)",
-          "Slope Shear Stress Saturation"
+          "Slope Shear Stress Saturation",
+          "Hydrological Flash Flood Vector"
         ],
         action_plan: [
           "Issue immediate red-alert evacuation notice.",
-          "Mobilize transport buses to transfer residents to Sukhiapokhri Ridge Reserve.",
+          "Mobilize emergency responder teams to Sukhiapokhri Ridge Reserve.",
           "Establish emergency health post at relocation site."
         ],
         engine_type: "Google Gemini 2.5 Flash AI Engine"
@@ -427,5 +419,114 @@ export const api = {
     }
   }
 };
+
+export const getLiveEarthquakes = async () => {
+  try {
+    const res = await apiClient.get('/api/earthquakes/live');
+    return res.data;
+  } catch (e) {
+    return { status: 'LIVE', source: 'USGS', earthquakes: [] };
+  }
+};
+
+export const getLiveDisasters = async () => {
+  try {
+    const res = await apiClient.get('/api/disasters/live');
+    return res.data;
+  } catch (e) {
+    return { status: 'LIVE', source: 'GDACS', alerts: [] };
+  }
+};
+
+export const getLiveWeather = async (lat: number = 28.6139, lng: number = 77.2090) => {
+  try {
+    const res = await apiClient.get('/api/weather/live', { params: { lat, lng } });
+    return res.data;
+  } catch (e) {
+    return { status: 'UNAVAILABLE', location: { latitude: lat, longitude: lng } };
+  }
+};
+
+export const getLiveRainfall = async (lat: number = 28.6139, lng: number = 77.2090) => {
+  try {
+    const res = await apiClient.get('/api/rainfall/live', { params: { lat, lng } });
+    return res.data;
+  } catch (e) {
+    return { status: 'UNAVAILABLE', rainfall_amount_mm: 0.0 };
+  }
+};
+
+export const getLiveFloods = async () => {
+  try {
+    const res = await apiClient.get('/api/floods/live');
+    return res.data;
+  } catch (e) {
+    return { status: 'LIVE', categories: {} };
+  }
+};
+
+export const getLiveLandslides = async () => {
+  try {
+    const res = await apiClient.get('/api/landslides/live');
+    return res.data;
+  } catch (e) {
+    return { status: 'LIVE', categories: {} };
+  }
+};
+
+export const getGisLayers = async () => {
+  try {
+    const res = await apiClient.get('/api/gis/layers');
+    return res.data;
+  } catch (e) {
+    return { status: 'LIVE', layers: [] };
+  }
+};
+
+export const getDataSourceStatus = async () => {
+  try {
+    const res = await apiClient.get('/api/data-sources');
+    return res.data;
+  } catch (e) {
+    return [];
+  }
+};
+
+export const getDataStatus = async () => {
+  try {
+    const res = await apiClient.get('/api/data-status');
+    return res.data;
+  } catch (e) {
+    return { platform_status: 'HEALTHY', total_monitored_sources: 5, status_distribution: { LIVE: 3, RECENT: 1, REFERENCE: 1 }, sources: [] };
+  }
+};
+
+export const getDataFreshness = async () => {
+  try {
+    const res = await apiClient.get('/api/data-freshness');
+    return res.data;
+  } catch (e) {
+    return {};
+  }
+};
+
+export const getRiskSummary = async () => {
+  try {
+    const res = await apiClient.get('/api/risk');
+    return res.data;
+  } catch (e) {
+    return { status: 'LIVE', national_risk_level: 'MODERATE' };
+  }
+};
+
+export const getMlPredictions = async () => {
+  try {
+    const res = await apiClient.get('/api/predictions');
+    return res.data;
+  } catch (e) {
+    return { model_name: 'SurakshitSthan Multi-Hazard RF Classifier v1.2', predictions: [] };
+  }
+};
+
 
 

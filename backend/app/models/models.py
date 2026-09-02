@@ -21,8 +21,6 @@ class Habitation(Base):
     name = Column(String(150), nullable=False, index=True)
     district = Column(String(100), nullable=False)
     state = Column(String(100), default="West Bengal")
-    population = Column(Integer, nullable=False)
-    vulnerable_population = Column(Integer, nullable=False)
     latitude = Column(Float, nullable=False)
     longitude = Column(Float, nullable=False)
     geometry_json = Column(JSON, nullable=True)  # GeoJSON Point
@@ -59,8 +57,6 @@ class RelocationSite(Base):
     longitude = Column(Float, nullable=False)
     land_area = Column(Float, nullable=False)  # Hectares
     available_area = Column(Float, nullable=False)
-    population_capacity = Column(Integer, nullable=False)
-    current_population = Column(Integer, default=0)
     safety_score = Column(Float, default=90.0)
     accessibility_score = Column(Float, default=85.0)
     infrastructure_score = Column(Float, default=80.0)
@@ -90,7 +86,6 @@ class RelocationRecommendation(Base):
     priority = Column(String(50), nullable=False)
     reason = Column(Text, nullable=False)
     distance = Column(Float, nullable=False)  # kilometers
-    capacity_available = Column(Integer, nullable=False)
     overall_score = Column(Float, nullable=False)
     generated_at = Column(DateTime, default=datetime.utcnow)
 

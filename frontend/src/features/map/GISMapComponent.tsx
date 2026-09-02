@@ -170,16 +170,16 @@ export const GISMapComponent: React.FC<GISMapComponentProps> = ({
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs mb-3">
                     <div className="bg-slate-100 dark:bg-navy-850 p-1.5 rounded-lg border border-slate-200 dark:border-navy-700">
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Total Population</p>
-                      <p className="font-bold text-slate-900 dark:text-slate-100">{hab.population.toLocaleString()}</p>
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Hazard Score</p>
+                      <p className="font-bold text-slate-900 dark:text-slate-100">{hab.hazard_score}/100</p>
                     </div>
                     <div className="bg-slate-100 dark:bg-navy-850 p-1.5 rounded-lg border border-slate-200 dark:border-navy-700">
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Vulnerable Pop</p>
-                      <p className="font-bold text-rose-600 dark:text-accent-red">{hab.vulnerable_population.toLocaleString()}</p>
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Vulnerability Score</p>
+                      <p className="font-bold text-amber-600 dark:text-accent-amber">{hab.vulnerability_score}/100</p>
                     </div>
                     <div className="bg-slate-100 dark:bg-navy-850 p-1.5 rounded-lg border border-slate-200 dark:border-navy-700">
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Overall Risk Score</p>
-                      <p className="font-bold text-amber-600 dark:text-accent-amber">{hab.hazard_score}/100</p>
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Infrastructure Score</p>
+                      <p className="font-bold text-slate-900 dark:text-slate-100">{hab.infrastructure_score}/100</p>
                     </div>
                     <div className="bg-slate-100 dark:bg-navy-850 p-1.5 rounded-lg border border-slate-200 dark:border-navy-700">
                       <p className="text-[10px] text-slate-500 dark:text-slate-400">Elevation</p>
@@ -227,9 +227,8 @@ export const GISMapComponent: React.FC<GISMapComponentProps> = ({
                 </div>
                 <div className="space-y-1 text-xs text-slate-600 dark:text-slate-300 mb-3">
                   <p><span className="text-slate-500 dark:text-slate-400">Safety Score:</span> <span className="font-bold text-teal-600 dark:text-accent-teal">{site.safety_score}/100</span></p>
-                  <p><span className="text-slate-500 dark:text-slate-400">Total Capacity:</span> <span className="font-bold text-slate-900 dark:text-white">{site.population_capacity.toLocaleString()}</span></p>
-                  <p><span className="text-slate-500 dark:text-slate-400">Available Buffer:</span> <span className="font-bold text-teal-600 dark:text-accent-teal">{(site.population_capacity - site.current_population).toLocaleString()}</span></p>
                   <p><span className="text-slate-500 dark:text-slate-400">Land Area:</span> {site.land_area} ha</p>
+                  <p><span className="text-slate-500 dark:text-slate-400">Available Usable Area:</span> <span className="font-bold text-teal-600 dark:text-accent-teal">{site.available_area} ha</span></p>
                 </div>
                 <button
                   onClick={() => navigate(`/capacity?site_id=${site.id}`)}

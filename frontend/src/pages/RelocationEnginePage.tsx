@@ -95,7 +95,7 @@ export const RelocationEnginePage: React.FC = () => {
                   <Badge priority={hab.relocation_priority} />
                 </div>
                 <div className="flex items-center justify-between mt-2 text-[11px] text-[#64748B]">
-                  <span>Pop: {hab.population.toLocaleString()}</span>
+                  <span>Elev: {hab.elevation} m</span>
                   <span className="font-bold text-amber-700">Risk: {hab.hazard_score}/100</span>
                 </div>
               </button>

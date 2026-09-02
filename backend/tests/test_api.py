@@ -1,5 +1,11 @@
 from fastapi.testclient import TestClient
 from app.main import app
+from app.database.db import SessionLocal
+from app.utils.seeder import seed_database
+
+db = SessionLocal()
+seed_database(db)
+db.close()
 
 client = TestClient(app)
 
@@ -35,8 +41,6 @@ def test_ml_predict():
         "flood_risk": 80.0,
         "earthquake_risk": 70.0,
         "environmental_risk": 85.0,
-        "population": 3000,
-        "vulnerable_population": 1200,
         "accessibility_score": 40.0,
         "infrastructure_score": 45.0,
         "distance_to_safe_area_km": 8.0
@@ -72,9 +76,8 @@ def test_relocation_simulate_endpoint():
     response = client.post("/api/relocation/simulate", json={})
     assert response.status_code == 200
     data = response.json()
-    assert "total_vulnerable_citizens" in data
-    assert "capacity_deficit" in data
-    assert "allocation_percentage" in data
+    assert "total_habitations" in data
+    assert "allocated_sites_count" in data
 
 def test_reports_relocation_brief():
     response = client.get("/api/reports/relocation?habitation_id=1")

@@ -22,8 +22,6 @@ export interface Habitation {
   name: string;
   district: string;
   state: string;
-  population: number;
-  vulnerable_population: number;
   latitude: number;
   longitude: number;
   geometry_json?: any;
@@ -58,8 +56,6 @@ export interface RelocationSite {
   geometry_json?: any;
   land_area: number;
   available_area: number;
-  population_capacity: number;
-  current_population: number;
   safety_score: number;
   accessibility_score: number;
   infrastructure_score: number;
@@ -74,14 +70,12 @@ export interface RankedRelocationSite {
   district: string;
   overall_score: number;
   safety_score: number;
-  capacity_score: number;
+  area_score?: number;
   accessibility_score: number;
   infrastructure_score: number;
   environmental_score: number;
   distance_km: number;
-  total_capacity: number;
-  current_population: number;
-  available_capacity: number;
+  available_area: number;
   suitability: string;
   latitude: number;
   longitude: number;
@@ -152,6 +146,87 @@ export interface LiveScraperStatus {
   error_logs: string[];
   pipeline_latency_ms: number;
   history_logs?: Array<{ timestamp: string; records_fetched: number; latency_ms: number; status: string }>;
+}
+
+export type DataStatusTier = 'LIVE' | 'RECENT' | 'STALE' | 'FAILED' | 'REFERENCE' | 'DEMO' | 'UNAVAILABLE';
+
+export interface EarthquakeItem {
+  id: string;
+  magnitude: number;
+  location: string;
+  latitude: number;
+  longitude: number;
+  depth_km: number;
+  event_time: string;
+  updated_time: string;
+  tsunami: boolean;
+  alert_level: string | null;
+  status: string;
+  source: string;
+  source_url: string;
+}
+
+export interface EarthquakeLiveResponse {
+  status: DataStatusTier;
+  source: string;
+  source_url: string;
+  fetched_at: string;
+  count: number;
+  earthquakes: EarthquakeItem[];
+}
+
+export interface DisasterAlertItem {
+  id: string;
+  event_type: string;
+  location: string;
+  severity: string;
+  timestamp: string;
+  description: string;
+  source: string;
+  source_url: string;
+}
+
+export interface DisasterLiveResponse {
+  status: DataStatusTier;
+  source: string;
+  source_url: string;
+  fetched_at: string;
+  count: number;
+  alerts: DisasterAlertItem[];
+}
+
+export interface WeatherLiveResponse {
+  status: DataStatusTier;
+  location: { latitude: number; longitude: number };
+  temperature_c?: number;
+  humidity_percent?: number;
+  surface_pressure_hpa?: number;
+  wind_speed_kmh?: number;
+  rainfall_mm?: number;
+  weather_code?: number;
+  source: string;
+  source_url: string;
+  observation_time?: string;
+  fetched_at: string;
+}
+
+export interface DataSourceHealthItem {
+  source_id: string;
+  name: string;
+  url: string;
+  status: DataStatusTier;
+  category: string;
+  update_frequency: string;
+  last_successful_update: string;
+  data_age: string;
+  limitations: string;
+}
+
+export interface DataStatusSummary {
+  platform_status: string;
+  total_monitored_sources: number;
+  status_distribution: Record<string, number>;
+  sources: DataSourceHealthItem[];
 }
 
 

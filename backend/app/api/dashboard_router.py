@@ -13,9 +13,8 @@ def get_dashboard_summary(db: Session = Depends(get_db)):
     total_sites = db.query(RelocationSite).count()
     
     sites = db.query(RelocationSite).all()
-    total_capacity = sum(s.population_capacity for s in sites)
-    used_capacity = sum(s.current_population for s in sites)
-    available_capacity = max(0, total_capacity - used_capacity)
+    total_land_area = sum(s.land_area for s in sites)
+    available_land_area = sum(s.available_area for s in sites)
     
     active_hazards = db.query(HazardZone).count()
     
@@ -35,8 +34,8 @@ def get_dashboard_summary(db: Session = Depends(get_db)):
             "high_risk_habitations": high_risk_habs,
             "immediate_relocation_required": immediate_req,
             "safe_relocation_sites": total_sites,
-            "available_capacity": available_capacity,
-            "total_capacity": total_capacity,
+            "available_land_area_ha": round(available_land_area, 1),
+            "total_land_area_ha": round(total_land_area, 1),
             "active_hazards": active_hazards,
             "data_freshness": "Real-time Live Feed (100% Verified)"
         },

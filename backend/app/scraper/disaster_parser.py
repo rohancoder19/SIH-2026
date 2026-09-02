@@ -72,6 +72,7 @@ def parse_usgs_earthquakes(geojson_data: Dict[str, Any], target_region_bounds: D
                 "geometry_json": polygon_geom,
                 "source": "USGS Real-Time Earthquake Hazards Program",
                 "confidence": 0.95,
+                "status": "LIVE",
                 "epicenter": {"latitude": lat, "longitude": lng, "magnitude": mag}
             })
 
@@ -88,7 +89,8 @@ def parse_usgs_earthquakes(geojson_data: Dict[str, Any], target_region_bounds: D
             "risk_score": 85.0,
             "geometry_json": mbt_polygon,
             "source": "National Centre for Seismology & GSI Survey",
-            "confidence": 0.92
+            "confidence": 0.92,
+            "status": "REFERENCE"
         })
 
     return hazard_zones

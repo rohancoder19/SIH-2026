@@ -29,8 +29,6 @@ export const HabitationDetailPage: React.FC = () => {
           flood_risk: hab.hazard_breakdown?.flood || 80.0,
           earthquake_risk: hab.hazard_breakdown?.earthquake || 70.0,
           environmental_risk: hab.hazard_breakdown?.environmental || 85.0,
-          population: hab.population,
-          vulnerable_population: hab.vulnerable_population,
           accessibility_score: hab.accessibility_score,
           infrastructure_score: hab.infrastructure_score,
           distance_to_safe_area_km: 7.5
@@ -65,7 +63,6 @@ export const HabitationDetailPage: React.FC = () => {
   const xaiFactors = mlData?.contributing_factors || {
     "Landslide Exposure": 92.0,
     "Flood Exposure": 85.0,
-    "Vulnerable Population Ratio": 81.0,
     "Environmental Degradation": 78.0,
     "Infrastructure Vulnerability": 65.0,
     "Evacuation Accessibility Deficit": 58.0
@@ -110,12 +107,12 @@ export const HabitationDetailPage: React.FC = () => {
       {/* 4 Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-[#CBD5E1] shadow-xs">
-          <p className="text-xs font-bold text-[#64748B]">Total Population</p>
-          <p className="text-2xl font-extrabold text-[#0F172A] mt-1">{habitation.population.toLocaleString()}</p>
+          <p className="text-xs font-bold text-[#64748B]">Infrastructure Score</p>
+          <p className="text-2xl font-extrabold text-[#0F172A] mt-1">{habitation.infrastructure_score}/100</p>
         </div>
-        <div className="p-4 rounded-2xl bg-rose-100/60 border border-rose-300 shadow-xs">
-          <p className="text-xs font-bold text-rose-800">Vulnerable Population</p>
-          <p className="text-2xl font-extrabold text-rose-800 mt-1">{habitation.vulnerable_population.toLocaleString()}</p>
+        <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-[#CBD5E1] shadow-xs">
+          <p className="text-xs font-bold text-[#64748B]">Accessibility Score</p>
+          <p className="text-2xl font-extrabold text-sky-800 mt-1">{habitation.accessibility_score}/100</p>
         </div>
         <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-[#CBD5E1] shadow-xs">
           <p className="text-xs font-bold text-[#64748B]">Overall Hazard Score</p>
@@ -138,7 +135,7 @@ export const HabitationDetailPage: React.FC = () => {
 
           <div className="p-3.5 bg-[#EEF2FF] rounded-xl border border-[#E0E7FF] text-xs text-[#334155] leading-relaxed">
             <strong className="text-[#4F46E5] block mb-1">AI Recommendation Reasoning:</strong>
-            {mlData?.explanation || "High flood exposure combined with high vulnerable population ratio, poor infrastructure, and limited evacuation accessibility."}
+            {mlData?.explanation || "High flood exposure combined with environmental risk factors, poor infrastructure, and limited evacuation accessibility."}
           </div>
 
           <div className="space-y-3 pt-2">

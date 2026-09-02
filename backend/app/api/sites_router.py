@@ -30,8 +30,6 @@ def get_site_capacity(site_id: int, db: Session = Depends(get_db)):
         "name": site.name,
         "land_area": site.land_area,
         "available_area": site.available_area,
-        "current_population": site.current_population,
-        "population_capacity": site.population_capacity,
         "safety_score": site.safety_score,
         "infrastructure_score": site.infrastructure_score,
         "environmental_score": site.environmental_score

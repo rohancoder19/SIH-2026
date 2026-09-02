@@ -134,7 +134,7 @@ export const GISMapPage: React.FC = () => {
                   <Badge priority={hab.relocation_priority} size="sm" />
                 </div>
                 <div className="flex items-center justify-between text-[10px] text-[#64748B] mt-1">
-                  <span>Pop: {hab.population.toLocaleString()}</span>
+                  <span>Elev: {hab.elevation} m</span>
                   <span className="font-bold text-amber-600">Score: {hab.hazard_score}/100</span>
                 </div>
               </div>
@@ -173,8 +173,8 @@ export const GISMapPage: React.FC = () => {
                 <span className="font-bold text-[#0F172A]">{selectedHab.district}</span>
               </div>
               <div className="bg-[#F8FAFC] p-2 rounded-xl border border-[#E2E8F0]">
-                <span className="text-[10px] text-[#64748B] block">Vulnerable Pop</span>
-                <span className="font-bold text-rose-600">{selectedHab.vulnerable_population.toLocaleString()}</span>
+                <span className="text-[10px] text-[#64748B] block">Hazard Score</span>
+                <span className="font-bold text-amber-600">{selectedHab.hazard_score}/100</span>
               </div>
             </div>
 

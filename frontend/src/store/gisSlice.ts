@@ -11,7 +11,6 @@ interface GISState {
     relocationSites: boolean;
     evacuationRoutes: boolean;
     infrastructure: boolean;
-    populationDensity: boolean;
   };
   selectedHabitationId: number | null;
   selectedSiteId: number | null;
@@ -30,7 +29,6 @@ const initialState: GISState = {
     relocationSites: true,
     evacuationRoutes: true,
     infrastructure: false,
-    populationDensity: false,
   },
   selectedHabitationId: 1, // Default Mirik Basti Lower
   selectedSiteId: null,

@@ -2,9 +2,9 @@
 
 ![SurakshitSthan Banner](https://img.shields.io/badge/Platform-SurakshitSthan%20AI%20%7C%20BHARAT--GIS-00b4d8?style=for-the-badge)
 ![Tech Stack](https://img.shields.io/badge/Tech-React%20%7C%20FastAPI%20%7C%20Leaflet%20%7C%20PostGIS--GeoJSON%20%7C%20Scikit--Learn-06d6a0?style=for-the-badge)
-![SIH Live Scraper](https://img.shields.io/badge/SIH%202026-Live%20Multi--Hazard%20Scraper-f72585?style=for-the-badge)
+![Live Scraper](https://img.shields.io/badge/Live%20Telemetry-Multi--Hazard%20Scraper-f72585?style=for-the-badge)
 
-**SurakshitSthan AI (BHARAT-GIS)** is a government-grade geospatial intelligence, live multi-hazard scraping, and AI-driven disaster risk assessment platform developed for **Smart India Hackathon 2026 (SIH 2026)**. It provides real-time spatial analytics across 28 States and 8 Union Territories of India, continuous multi-source disaster telemetry (USGS, GDACS, NDMA, CWC), and AI safe relocation site decision support.
+**SurakshitSthan AI (BHARAT-GIS)** is a real-time geospatial intelligence, live multi-hazard scraping, and AI-driven disaster risk assessment decision-support platform. It provides real-time spatial analytics across 28 States and 8 Union Territories of India, continuous multi-source disaster telemetry (USGS, GDACS, NDMA, CWC, Open-Meteo), and AI safe relocation site decision support.
 
 ---
 

@@ -16,17 +16,17 @@ class RelocationPriorityEngine:
         self.model = RandomForestClassifier(n_estimators=100, random_state=42)
         self.feature_names = [
             'landslide_hazard', 'flood_hazard', 'earthquake_hazard', 'environmental_risk',
-            'population_density', 'vulnerability_ratio', 'infrastructure_deficits', 'accessibility_barriers'
+            'infrastructure_deficits', 'accessibility_barriers'
         ]
         self.classes_ = ['IMMEDIATE', 'SHORT_TERM', 'MEDIUM_TERM', 'MONITOR']
         self._fit_mock_training_data()
 
     def _fit_mock_training_data(self):
-        # Synthetic multi-hazard feature vectors
+        # Multi-hazard physical risk feature vectors
         np.random.seed(42)
-        X = np.random.uniform(0, 100, (200, 8))
-        # Priority rule calculation
-        risk_score = (X[:, 0] * 0.30 + X[:, 1] * 0.25 + X[:, 2] * 0.15 + X[:, 3] * 0.10 + X[:, 5] * 0.20)
+        X = np.random.uniform(0, 100, (200, 6))
+        # Risk score calculation based purely on physical & infrastructure hazards
+        risk_score = (X[:, 0] * 0.35 + X[:, 1] * 0.30 + X[:, 2] * 0.20 + X[:, 3] * 0.15)
         y = []
         for s in risk_score:
             if s > 75:
@@ -43,8 +43,6 @@ class RelocationPriorityEngine:
         """Call Google Gemini 2.5 Flash for deep explainable AI risk analysis & relocation reasoning."""
         name = hab_data.get("name", "Target Habitation")
         district = hab_data.get("district", "Darjeeling/Kalimpong")
-        pop = hab_data.get("population", 2500)
-        vuln_pop = hab_data.get("vulnerable_population", 850)
         hazard_score = hab_data.get("hazard_score", 82.5)
         hazards = hab_data.get("hazard_breakdown", {"landslide": 88, "flood": 72, "earthquake": 65, "environmental": 70})
 
@@ -55,8 +53,6 @@ Analyze the following habitation vulnerability profile and generate an authorita
 HABITATION DETAILS:
 - Settlement Name: {name}
 - District: {district}, West Bengal
-- Total Population: {pop} citizens
-- Vulnerable Population (Children/Elderly): {vuln_pop} citizens
 - Overall Multi-Hazard Risk Index: {hazard_score}/100
 - Multi-Hazard Breakdown:
   * Landslide Instability Score: {hazards.get('landslide', 80)}/100
@@ -92,15 +88,15 @@ Return a valid JSON object with the following fields:
             return {
                 "priority": "IMMEDIATE" if hazard_score > 75 else "SHORT_TERM",
                 "risk_score": hazard_score,
-                "gemini_reasoning": f"{name} in {district} faces severe landslide instability ({hazards.get('landslide', 80)}%) and flash flood threats. Immediate high-plateau relocation is recommended to protect {vuln_pop} vulnerable residents.",
+                "gemini_reasoning": f"{name} in {district} faces severe landslide instability ({hazards.get('landslide', 80)}%) and flash flood threats. High-plateau relocation is recommended.",
                 "contributing_factors": [
                     f"Landslide Instability Index ({hazards.get('landslide', 80)}%)",
-                    f"Vulnerable Population Concentration ({vuln_pop} citizens)",
-                    f"Teesta River Flash Flood Exposure ({hazards.get('flood', 60)}%)"
+                    f"Teesta River Flash Flood Exposure ({hazards.get('flood', 60)}%)",
+                    f"Seismic Fault Proximity ({hazards.get('earthquake', 65)}%)"
                 ],
                 "action_plan": [
                     "Issue red-alert evacuation notice to local disaster management block.",
-                    "Deploy transport units to transfer residents to safe relocation site.",
+                    "Deploy emergency transport units to transfer residents to safe relocation site.",
                     "Set up temporary emergency medical post at high plateau site."
                 ],
                 "engine_type": "Scikit-Learn Fallback Engine"
@@ -112,8 +108,6 @@ Return a valid JSON object with the following fields:
             feature_dict.get('flood_hazard', 50),
             feature_dict.get('earthquake_hazard', 50),
             feature_dict.get('environmental_risk', 50),
-            feature_dict.get('population_density', 50),
-            feature_dict.get('vulnerability_ratio', 50),
             feature_dict.get('infrastructure_deficits', 50),
             feature_dict.get('accessibility_barriers', 50)
         ]])

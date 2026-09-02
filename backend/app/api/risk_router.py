@@ -52,8 +52,6 @@ def analyze_habitation_risk(habitation_id: int, db: Session = Depends(get_db)):
         "flood_risk": breakdown.get("flood", 60.0),
         "earthquake_risk": breakdown.get("earthquake", 65.0),
         "environmental_risk": breakdown.get("environmental", 70.0),
-        "population": hab.population,
-        "vulnerable_population": hab.vulnerable_population,
         "accessibility_score": hab.accessibility_score,
         "infrastructure_score": hab.infrastructure_score,
         "distance_to_safe_area_km": 6.5
@@ -63,15 +61,12 @@ def analyze_habitation_risk(habitation_id: int, db: Session = Depends(get_db)):
         "habitation_id": hab.id,
         "habitation_name": hab.name,
         "district": hab.district,
-        "population": hab.population,
-        "vulnerable_population": hab.vulnerable_population,
         "overall_risk_score": hab.hazard_score,
         "relocation_priority": prediction["relocation_priority"],
         "ai_prediction": prediction,
         "hazard_breakdown": breakdown,
         "vulnerability_factors": {
             "infrastructure_vulnerability": round(100 - hab.infrastructure_score, 1),
-            "accessibility_vulnerability": round(100 - hab.accessibility_score, 1),
-            "vulnerable_pop_ratio": round((hab.vulnerable_population / max(1, hab.population)) * 100, 1)
+            "accessibility_vulnerability": round(100 - hab.accessibility_score, 1)
         }
     }

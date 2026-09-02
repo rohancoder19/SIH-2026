@@ -118,7 +118,7 @@ export const LandingPage: React.FC = () => {
               </div>
               <h3 className="text-base font-bold text-[#0F172A]">GIS Multi-Hazard Mapping</h3>
               <p className="text-xs text-[#334155] mt-2 leading-relaxed">
-                Overlay flood contours, landslide slope instability, seismic fault lines, and population density on interactive Leaflet maps.
+                Overlay flood contours, landslide slope instability, seismic fault lines, and telemetry sensors on interactive Leaflet maps.
               </p>
             </div>
 
@@ -138,7 +138,7 @@ export const LandingPage: React.FC = () => {
               </div>
               <h3 className="text-base font-bold text-[#0F172A]">Safe Site Recommendation</h3>
               <p className="text-xs text-[#334155] mt-2 leading-relaxed">
-                Multi-Criteria Decision Analysis (MCDA) ranking safe sites based on safety, carrying capacity, accessibility, and evacuation distance.
+                Multi-Criteria Decision Analysis (MCDA) ranking safe sites based on safety, land area, accessibility, and evacuation distance.
               </p>
             </div>
 
@@ -148,7 +148,7 @@ export const LandingPage: React.FC = () => {
               </div>
               <h3 className="text-base font-bold text-[#0F172A]">Carrying Capacity Assessment</h3>
               <p className="text-xs text-[#334155] mt-2 leading-relaxed">
-                Calculate sustainable population bottlenecks across land area, water availability, infrastructure quality, and environmental bounds.
+                Calculate sustainable land area utilization across usable hectares, water availability, infrastructure quality, and environmental bounds.
               </p>
             </div>
           </div>

@@ -36,8 +36,8 @@ export const HabitationsPage: React.FC = () => {
   });
 
   const exportCSV = () => {
-    const headers = ['ID', 'Name', 'District', 'Population', 'Vulnerable Pop', 'Hazard Score', 'Priority'];
-    const rows = filtered.map(h => [h.id, `"${h.name}"`, `"${h.district}"`, h.population, h.vulnerable_population, h.hazard_score, h.relocation_priority]);
+    const headers = ['ID', 'Name', 'District', 'Elevation', 'Hazard Score', 'Priority'];
+    const rows = filtered.map(h => [h.id, `"${h.name}"`, `"${h.district}"`, h.elevation, h.hazard_score, h.relocation_priority]);
     const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
@@ -147,8 +147,6 @@ export const HabitationsPage: React.FC = () => {
                   <th className="py-2.5 px-4 rounded-l-lg">Habitation</th>
                   <th className="py-2.5 px-4">District</th>
                   <th className="py-2.5 px-4">Elevation</th>
-                  <th className="py-2.5 px-4">Total Pop</th>
-                  <th className="py-2.5 px-4">Vulnerable Pop</th>
                   <th className="py-2.5 px-4">Risk Score</th>
                   <th className="py-2.5 px-4">Relocation Priority</th>
                   <th className="py-2.5 px-4 text-right rounded-r-lg">Actions</th>
@@ -160,8 +158,6 @@ export const HabitationsPage: React.FC = () => {
                     <td className="py-3.5 px-4 font-bold text-[#0F172A] group-hover:text-[#4F46E5] transition">{hab.name}</td>
                     <td className="py-3.5 px-4 text-[#334155]">{hab.district}</td>
                     <td className="py-3.5 px-4 text-[#334155]">{hab.elevation} m</td>
-                    <td className="py-3.5 px-4 text-[#334155]">{hab.population.toLocaleString()}</td>
-                    <td className="py-3.5 px-4 font-semibold text-rose-700">{hab.vulnerable_population.toLocaleString()}</td>
                     <td className="py-3.5 px-4">
                       <span className="font-extrabold text-amber-700">{hab.hazard_score}/100</span>
                     </td>

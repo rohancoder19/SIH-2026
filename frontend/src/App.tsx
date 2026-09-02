@@ -14,6 +14,7 @@ import { CarryingCapacityPage } from './pages/CarryingCapacityPage';
 import { AnalyticsPage } from './pages/AnalyticsPage';
 import { ReportsPage } from './pages/ReportsPage';
 import { DataIngestionPage } from './pages/DataIngestionPage';
+import { DataTransparencyPage } from './pages/DataTransparencyPage';
 import { ExpertValidationPage } from './pages/ExpertValidationPage';
 import { AdminPage } from './pages/AdminPage';
 import { DashboardLayout } from './layouts/DashboardLayout';
@@ -44,6 +45,7 @@ export const App: React.FC = () => {
                   <Route path="/capacity" element={<CarryingCapacityPage />} />
                   <Route path="/analytics" element={<AnalyticsPage />} />
                   <Route path="/reports" element={<ReportsPage />} />
+                  <Route path="/transparency" element={<DataTransparencyPage />} />
                   <Route path="/data" element={<DataIngestionPage />} />
                   <Route path="/validation" element={<ExpertValidationPage />} />
                   <Route path="/admin" element={<AdminPage />} />

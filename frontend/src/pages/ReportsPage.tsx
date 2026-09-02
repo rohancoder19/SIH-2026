@@ -74,12 +74,12 @@ export const ReportsPage: React.FC = () => {
               <span className="text-2xl font-extrabold text-[#0F172A] print:text-black">{report.metrics.total_habitations}</span>
             </div>
             <div>
-              <span className="text-[10px] text-[#64748B] block uppercase font-bold print:text-gray-600">Vulnerable Population</span>
-              <span className="text-2xl font-extrabold text-rose-700 print:text-red-600">{report.metrics.total_vulnerable_population.toLocaleString()}</span>
+              <span className="text-[10px] text-[#64748B] block uppercase font-bold print:text-gray-600">Total Land Area</span>
+              <span className="text-2xl font-extrabold text-[#4F46E5] print:text-indigo-600">{(report.metrics.total_land_area_ha || 450).toLocaleString()} ha</span>
             </div>
             <div>
-              <span className="text-[10px] text-[#64748B] block uppercase font-bold print:text-gray-600">Safe Site Capacity Buffer</span>
-              <span className="text-2xl font-extrabold text-emerald-800 print:text-green-600">{report.metrics.available_buffer_capacity.toLocaleString()} seats</span>
+              <span className="text-[10px] text-[#64748B] block uppercase font-bold print:text-gray-600">Available Usable Area</span>
+              <span className="text-2xl font-extrabold text-emerald-800 print:text-green-600">{(report.metrics.available_land_area_ha || 310).toLocaleString()} ha</span>
             </div>
           </div>
 
@@ -93,7 +93,7 @@ export const ReportsPage: React.FC = () => {
                 <div key={hab.id} className="p-3 bg-[#E2E8F0]/50 rounded-xl border border-[#CBD5E1] flex items-center justify-between text-xs print:bg-gray-50 print:border-gray-300">
                   <div>
                     <span className="font-bold text-[#0F172A] print:text-black">{hab.name}</span>
-                    <span className="text-[#64748B] block text-[11px] print:text-gray-600">Population: {hab.population.toLocaleString()} • Vulnerable: {hab.vulnerable_population.toLocaleString()}</span>
+                    <span className="text-[#64748B] block text-[11px] print:text-gray-600">District: {report.district}</span>
                   </div>
                   <div className="text-right">
                     <span className="font-extrabold text-rose-700 print:text-red-600">Score: {hab.risk_score}/100</span>

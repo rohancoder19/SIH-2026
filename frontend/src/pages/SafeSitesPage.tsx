@@ -77,7 +77,7 @@ export const SafeSitesPage: React.FC = () => {
 
         {activeHab && (
           <div className="flex items-center gap-3 text-xs">
-            <span className="text-[#64748B]">Vulnerable Pop: <strong className="text-rose-700">{activeHab.vulnerable_population.toLocaleString()}</strong></span>
+            <span className="text-[#64748B]">District: <strong className="text-[#0F172A]">{activeHab.district}</strong></span>
             <span>•</span>
             <Badge priority={activeHab.relocation_priority} size="sm" />
           </div>
@@ -120,12 +120,12 @@ export const SafeSitesPage: React.FC = () => {
                   {/* Factor Ratings */}
                   <div className="space-y-2 bg-[#E2E8F0]/60 p-3.5 rounded-xl border border-[#CBD5E1] text-xs mb-4">
                     <div className="flex justify-between">
-                      <span className="text-[#64748B]">Safety Score (30%):</span>
+                      <span className="text-[#64748B]">Safety Score (35%):</span>
                       <span className="font-bold text-emerald-800">{site.safety_score}/100</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#64748B]">Available Buffer (20%):</span>
-                      <span className="font-bold text-[#0F172A]">{site.available_capacity.toLocaleString()} seats</span>
+                      <span className="text-[#64748B]">Available Land Area:</span>
+                      <span className="font-bold text-[#0F172A]">{site.available_area} ha</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#64748B]">Evacuation Access (15%):</span>

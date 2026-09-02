@@ -24,6 +24,7 @@ from app.api.admin_router import router as admin_router
 from app.api.scraper_router import router as scraper_router
 from app.api.red_zones_router import router as red_zones_router
 from app.api.data_router import router as data_router
+from app.api.realtime_router import router as realtime_router
 from app.scraper.disaster_scraper import disaster_scraper
 from app.scraper.pipeline import disaster_pipeline
 
@@ -109,6 +110,7 @@ app.include_router(admin_router)
 app.include_router(scraper_router)
 app.include_router(red_zones_router)
 app.include_router(data_router)
+app.include_router(realtime_router)
 
 @app.get("/")
 def root():

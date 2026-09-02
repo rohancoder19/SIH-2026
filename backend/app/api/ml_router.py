@@ -13,8 +13,6 @@ class PredictionRequest(BaseModel):
     flood_hazard: float = 65.0
     earthquake_hazard: float = 55.0
     environmental_risk: float = 60.0
-    population_density: float = 70.0
-    vulnerability_ratio: float = 75.0
     infrastructure_deficits: float = 60.0
     accessibility_barriers: float = 65.0
 
@@ -35,8 +33,6 @@ def analyze_with_gemini_ai(habitation_id: int, db: Session = Depends(get_db)):
     hab_dict = {
         "name": hab.name,
         "district": hab.district,
-        "population": hab.population,
-        "vulnerable_population": hab.vulnerable_population,
         "hazard_score": hab.hazard_score,
         "hazard_breakdown": hab.hazard_breakdown or {"landslide": 85, "flood": 70, "earthquake": 65, "environmental": 60}
     }

@@ -24,8 +24,6 @@ class HabitationBase(BaseModel):
     name: str
     district: str
     state: str = "West Bengal"
-    population: int
-    vulnerable_population: int
     latitude: float
     longitude: float
     geometry_json: Optional[Dict[str, Any]] = None
@@ -69,8 +67,6 @@ class RelocationSiteBase(BaseModel):
     geometry_json: Optional[Dict[str, Any]] = None
     land_area: float
     available_area: float
-    population_capacity: int
-    current_population: int = 0
     safety_score: float = 90.0
     accessibility_score: float = 85.0
     infrastructure_score: float = 80.0
@@ -89,8 +85,6 @@ class MLPredictionInput(BaseModel):
     flood_risk: float
     earthquake_risk: float
     environmental_risk: float
-    population: int
-    vulnerable_population: int
     accessibility_score: float
     infrastructure_score: float
     distance_to_safe_area_km: float

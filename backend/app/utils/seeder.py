@@ -40,47 +40,11 @@ def seed_database(db: Session):
         db.add(HazardWeightsConfig(flood_w=0.25, landslide_w=0.30, earthquake_w=0.20, cyclone_w=0.10, environmental_w=0.15))
         db.commit()
 
-    # 3. Seed Habitations from datasets/population/village_population.csv
-    datasets_pop_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../datasets/population/village_population.csv"))
+    # 3. Seed Habitations
     demo_hab_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../data/demo/habitations.json"))
 
     if db.query(Habitation).count() == 0:
-        if os.path.exists(datasets_pop_path):
-            hab_objects = []
-            with open(datasets_pop_path, "r", encoding="utf-8") as f:
-                reader = csv.DictReader(f)
-                for idx, row in enumerate(reader):
-                    pop = int(row["total_population"])
-                    vuln_pop = int(row["vulnerable_population"])
-                    lat = 26.85 + (idx * 0.012) % 0.35
-                    lng = 88.15 + (idx * 0.024) % 0.65
-                    ls = 85.0 if idx % 2 == 0 else 55.0
-                    fl = 90.0 if idx % 3 == 0 else 40.0
-                    eq = 70.0
-                    env = 75.0
-                    overall = round(ls * 0.35 + fl * 0.25 + eq * 0.20 + env * 0.20, 1)
-                    prio = "IMMEDIATE" if overall > 75 else ("SHORT_TERM" if overall > 60 else "MEDIUM_TERM")
-
-                    hab_objects.append(Habitation(
-                        name=row["village_name"],
-                        district=row["district"],
-                        state=row.get("state", "West Bengal"),
-                        population=pop,
-                        vulnerable_population=vuln_pop,
-                        latitude=round(lat, 4),
-                        longitude=round(lng, 4),
-                        elevation=1200.0,
-                        infrastructure_score=round(100 - (overall * 0.4), 1),
-                        accessibility_score=round(100 - (overall * 0.5), 1),
-                        hazard_score=overall,
-                        vulnerability_score=round((vuln_pop / max(1, pop)) * 100, 1),
-                        relocation_priority=prio,
-                        hazard_breakdown={"landslide": ls, "flood": fl, "earthquake": eq, "environmental": env},
-                        geometry_json={"type": "Point", "coordinates": [round(lng, 4), round(lat, 4)]}
-                    ))
-            db.add_all(hab_objects)
-            db.commit()
-        elif os.path.exists(demo_hab_path):
+        if os.path.exists(demo_hab_path):
             with open(demo_hab_path, "r") as f:
                 habs_data = json.load(f)
             hab_objects = []
@@ -94,15 +58,13 @@ def seed_database(db: Session):
                     name=h["name"],
                     district=h["district"],
                     state="West Bengal",
-                    population=h["pop"],
-                    vulnerable_population=h["vuln_pop"],
                     latitude=h["lat"],
                     longitude=h["lng"],
                     elevation=h["elevation"],
                     infrastructure_score=round(100 - (overall_hazard * 0.4), 1),
                     accessibility_score=round(100 - (overall_hazard * 0.5), 1),
                     hazard_score=overall_hazard,
-                    vulnerability_score=round((h["vuln_pop"] / max(1, h["pop"])) * 100, 1),
+                    vulnerability_score=round(overall_hazard * 0.9, 1),
                     relocation_priority=h["priority"],
                     hazard_breakdown=h["hazards"],
                     geometry_json={"type": "Point", "coordinates": [h["lng"], h["lat"]]}
@@ -126,8 +88,6 @@ def seed_database(db: Session):
                 geometry_json={"type": "Point", "coordinates": [s["lng"], s["lat"]]},
                 land_area=s["land_area"],
                 available_area=s["avail_area"],
-                population_capacity=s["capacity"],
-                current_population=s["current_pop"],
                 safety_score=s["safety"],
                 accessibility_score=s["access"],
                 infrastructure_score=s["infra"],
@@ -161,7 +121,6 @@ def seed_database(db: Session):
     # 6. Seed Ingestion Pipelines
     if db.query(IngestionPipeline).count() == 0:
         pipelines = [
-            IngestionPipeline(dataset_name="datasets/population/village_population.csv", source="Census 2021 Survey", format="CSV", size_bytes=14200, record_count=30, crs="WGS84", status="Completed"),
             IngestionPipeline(dataset_name="datasets/disasters/landslide_inventory.csv", source="GSI Landslide Records", format="CSV", size_bytes=28500, record_count=20, crs="WGS84", status="Completed"),
             IngestionPipeline(dataset_name="datasets/disasters/flood_history.csv", source="CWC Hydrological Board", format="CSV", size_bytes=18400, record_count=15, crs="WGS84", status="Completed"),
             IngestionPipeline(dataset_name="datasets/infrastructure/roads.geojson", source="PWD Geospatial Survey", format="GeoJSON", size_bytes=64000, record_count=15, crs="EPSG:4326", status="Completed"),
@@ -214,8 +173,6 @@ def seed_database(db: Session):
                         "habitation_id": h.id,
                         "name": h.name,
                         "district": h.district,
-                        "population": h.population,
-                        "vulnerable_population": h.vulnerable_population,
                         "latitude": h.latitude,
                         "longitude": h.longitude,
                         "hazard_score": h.hazard_score,

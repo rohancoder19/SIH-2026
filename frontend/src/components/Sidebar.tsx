@@ -12,7 +12,8 @@ import {
   FileText,
   UploadCloud,
   CheckCircle2,
-  Settings
+  Settings,
+  Activity
 } from 'lucide-react';
 
 interface NavItem {
@@ -32,6 +33,7 @@ const navItems: NavItem[] = [
   { name: 'Carrying Capacity', path: '/capacity', icon: Building2 },
   { name: 'Analytics', path: '/analytics', icon: BarChart3 },
   { name: 'Reports & Exports', path: '/reports', icon: FileText },
+  { name: 'Data Transparency', path: '/transparency', icon: Activity, badge: 'NEW' },
   { name: 'Data Management', path: '/data', icon: UploadCloud },
   { name: 'Expert Validation', path: '/validation', icon: CheckCircle2 },
   { name: 'Admin Controls', path: '/admin', icon: Settings },
