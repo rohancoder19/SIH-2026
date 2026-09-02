@@ -175,3 +175,37 @@ export interface ProblemStats {
   categories: Array<{ name: string; count: number }>;
   organizations: Array<{ name: string; count: number }>;
 }
+
+export interface SourceAttribution {
+  name: string;
+  url: string;
+  type: string;
+}
+
+export interface ScrapedHazardRecord {
+  id: number;
+  hazard_type: string;
+  name: string;
+  severity: 'Low' | 'Moderate' | 'High' | 'Very High' | 'Critical';
+  risk_score: number;
+  source: string;
+  confidence: number;
+  extracted_at?: string;
+  geometry_json?: any;
+}
+
+export interface LiveScraperStatus {
+  status: 'live' | 'scraping' | 'failed' | 'idle' | string;
+  last_successful_run: string | null;
+  cache_age: string;
+  cache_age_seconds: number;
+  records_fetched: number;
+  active_hazards_by_type: Record<string, number>;
+  source_urls: string[];
+  is_fresh: boolean;
+  error_logs: string[];
+  pipeline_latency_ms: number;
+  history_logs?: Array<{ timestamp: string; records_fetched: number; latency_ms: number; status: string }>;
+}
+
+

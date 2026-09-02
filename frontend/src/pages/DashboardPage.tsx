@@ -11,6 +11,8 @@ import {
 import {
   Home, ShieldAlert, Cpu, ShieldCheck, Building2, Flame, ArrowRight, AlertTriangle, RefreshCw
 } from 'lucide-react';
+import { ScraperStatusBanner } from '../components/ScraperStatusBanner';
+import { ScraperTelemetryDrawer } from '../components/ScraperTelemetryDrawer';
 
 export const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -18,6 +20,7 @@ export const DashboardPage: React.FC = () => {
   const [habitations, setHabitations] = useState<Habitation[]>([]);
   const [hazards, setHazards] = useState<HazardZone[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showTelemetry, setShowTelemetry] = useState(false);
 
   const fetchData = async () => {
     setLoading(true);
@@ -58,15 +61,15 @@ export const DashboardPage: React.FC = () => {
   ];
 
   const hazardChartData = [
-    { hazard: 'Landslide', habitations: 28, risk: 92 },
-    { hazard: 'Teesta Flood', habitations: 18, risk: 96 },
-    { hazard: 'Seismic MBT', habitations: 12, risk: 85 },
-    { hazard: 'Flash Flood', habitations: 15, risk: 89 },
+    { name: 'Landslide', count: 28 },
+    { name: 'Flood', count: 18 },
+    { name: 'Seismic', count: 12 },
+    { name: 'Flash Flood', count: 15 }
   ];
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       className="p-6 space-y-6 max-w-[1600px] mx-auto"
@@ -80,11 +83,11 @@ export const DashboardPage: React.FC = () => {
             </h1>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100/70 text-emerald-800 border border-emerald-300 text-xs font-semibold">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-              Live SIH Data
+              Live Scraping Enabled
             </span>
           </div>
           <p className="text-xs text-[#64748B]">
-            Real-time geospatial intelligence, multi-hazard risk analysis, and safe relocation monitoring
+            Real-time geospatial intelligence, dynamic multi-hazard web scraping, and safe relocation monitoring
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -104,6 +107,9 @@ export const DashboardPage: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* Live Web Scraping Engine Status Banner */}
+      <ScraperStatusBanner onOpenTelemetry={() => setShowTelemetry(true)} />
 
       {/* Top 6 KPI Cards Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -300,6 +306,8 @@ export const DashboardPage: React.FC = () => {
           </table>
         </div>
       </div>
+
+      <ScraperTelemetryDrawer isOpen={showTelemetry} onClose={() => setShowTelemetry(false)} />
     </motion.div>
   );
 };

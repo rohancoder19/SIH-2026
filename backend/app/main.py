@@ -21,6 +21,7 @@ from app.api.gis_router import router as gis_router
 from app.api.validation_router import router as validation_router
 from app.api.reports_router import router as reports_router
 from app.api.admin_router import router as admin_router
+from app.api.scraper_router import router as scraper_router
 from app.scraper.disaster_scraper import disaster_scraper
 
 logger = logging.getLogger("surakshitsthan.main")
@@ -28,19 +29,31 @@ logger = logging.getLogger("surakshitsthan.main")
 # Create Database Tables
 Base.metadata.create_all(bind=engine)
 
-async def _warmup_scraper_cache():
+async def _background_scraper_cron(interval_seconds: int = 900):
     """
-    Asynchronously warms up the Live Disaster & Hazard Intelligence cache on startup.
+    Automated background worker loop that periodically scrapes real-time
+    multi-hazard disaster data (every 15 mins) and updates cache/WebSockets.
     """
     if os.getenv("TESTING") == "1" or os.getenv("PYTEST_CURRENT_TEST"):
-        logger.info("[STARTUP] Testing environment detected. Skipping automatic scraper network warmup.")
+        logger.info("[CRON] Testing environment detected. Skipping background cron worker loop.")
         return
+    
+    # Initial warmup
     try:
         logger.info("[STARTUP] Initializing Live Disaster & Hazard Intelligence scraper (USGS, GDACS, CWC)...")
-        await disaster_scraper.scrape_all_hazards()
+        await disaster_scraper.scrape_all_hazards(force=True)
         logger.info("[STARTUP] Live Disaster Hazard cache initialization finished.")
     except Exception as e:
         logger.warning(f"[STARTUP] Scraper warm-up non-critical notice: {e}")
+
+    # Recurring cron loop
+    while True:
+        await asyncio.sleep(interval_seconds)
+        try:
+            logger.info("[CRON] Executing automated 15-minute background live scraping cycle...")
+            await disaster_scraper.scrape_all_hazards(force=True)
+        except Exception as e:
+            logger.warning(f"[CRON] Automated background scraping cycle notice: {e}")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -53,10 +66,13 @@ async def lifespan(app: FastAPI):
     finally:
         db.close()
 
-    # 2. Warm up live disaster scraper cache asynchronously
-    asyncio.create_task(_warmup_scraper_cache())
+    # 2. Start background cron worker loop for live scraping
+    cron_task = asyncio.create_task(_background_scraper_cron(interval_seconds=900))
 
     yield
+
+    # Cancel background task on shutdown
+    cron_task.cancel()
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -87,6 +103,7 @@ app.include_router(gis_router)
 app.include_router(validation_router)
 app.include_router(reports_router)
 app.include_router(admin_router)
+app.include_router(scraper_router)
 
 @app.get("/")
 def root():
@@ -94,7 +111,7 @@ def root():
         "title": settings.PROJECT_NAME,
         "status": "ONLINE",
         "docs": "/docs",
-        "disaster_scraper": "/api/hazards/status",
+        "disaster_scraper": "/api/scrape/status",
         "hazards_geojson": "/api/hazards/geojson",
         "message": "Welcome to SurakshitSthan AI - Multi-Hazard GIS & Live Disaster Intelligence Command Center"
     }
