@@ -37,3 +37,8 @@ venv/
 .DS_Store
 *.log
 scratch/
+
+# Ignore all markdown documentation except README.md
+*.md
+!README.md
+
