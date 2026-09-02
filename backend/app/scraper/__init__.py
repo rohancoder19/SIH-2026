@@ -1,5 +1,5 @@
 """
-SIH 2026 Live Web Scraper Package
-Provides live scraping, parsing, normalization, validation, and caching
-for official Smart India Hackathon problem statements.
+Live Multi-Hazard Disaster Scraper Package
+Provides live scraping, parsing, normalization, confidence scoring, deduplication, and caching
+for multi-hazard disaster intelligence (USGS, GDACS, NDMA, CWC).
 """

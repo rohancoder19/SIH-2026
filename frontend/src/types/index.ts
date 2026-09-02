@@ -120,61 +120,7 @@ export interface ExpertValidation {
   created_at: string;
 }
 
-// SIH 2026 Live Web Scraper Types
-export interface ReferenceLink {
-  title: string;
-  url: string;
-}
 
-export interface SIHProblemStatement {
-  id: string;
-  serial_no?: number | null;
-  title: string;
-  organization: string;
-  department?: string | null;
-  category: 'Software' | 'Hardware' | string;
-  theme: string;
-  description: string;
-  background?: string | null;
-  expected_solution?: string | null;
-  deadline?: string | null;
-  submitted_ideas?: string | null;
-  references?: ReferenceLink[];
-  source_url: string;
-  scraped_at?: string | null;
-}
-
-export interface ScraperStatus {
-  status: 'idle' | 'scraping' | 'success' | 'failed' | string;
-  total_problems: number;
-  last_scraped?: string | null;
-  source: string;
-  cache_age: string;
-  cache_age_seconds?: number | null;
-  is_cached: boolean;
-  is_fresh: boolean;
-  error_message?: string | null;
-}
-
-export interface ProblemFilterParams {
-  category?: string;
-  theme?: string;
-  organization?: string;
-  search?: string;
-  sort_by?: string;
-  sort_order?: 'asc' | 'desc';
-}
-
-export interface ProblemStats {
-  total_problems: number;
-  software_count: number;
-  hardware_count: number;
-  theme_count: number;
-  organization_count: number;
-  themes: Array<{ name: string; count: number }>;
-  categories: Array<{ name: string; count: number }>;
-  organizations: Array<{ name: string; count: number }>;
-}
 
 export interface SourceAttribution {
   name: string;

@@ -141,6 +141,3 @@ class HazardWeightsConfig(Base):
     cyclone_w = Column(Float, default=0.10)
     environmental_w = Column(Float, default=0.15)
     updated_at = Column(DateTime, default=datetime.utcnow)
-
-# SIH 2026 Problem Statements Model
-from app.models.problem import SIHProblemStatement

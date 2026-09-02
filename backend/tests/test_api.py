@@ -53,3 +53,33 @@ def test_relocation_recommendations():
     data = response.json()
     assert "recommended_sites" in data
     assert len(data["recommended_sites"]) > 0
+
+def test_red_zones_endpoint():
+    response = client.get("/api/red-zones")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["type"] == "FeatureCollection"
+    assert "features" in data
+
+def test_data_refresh_endpoint():
+    response = client.post("/api/data/refresh")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["status"] == "SUCCESS"
+    assert "hazards_count" in data
+
+def test_relocation_simulate_endpoint():
+    response = client.post("/api/relocation/simulate", json={})
+    assert response.status_code == 200
+    data = response.json()
+    assert "total_vulnerable_citizens" in data
+    assert "capacity_deficit" in data
+    assert "allocation_percentage" in data
+
+def test_reports_relocation_brief():
+    response = client.get("/api/reports/relocation?habitation_id=1")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["report_type"] == "STATE_AUTHORITY_RELOCATION_BRIEF"
+    assert "explainable_ai" in data
+    assert "authority_briefing" in data

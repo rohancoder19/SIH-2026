@@ -4,7 +4,7 @@
 ![Tech Stack](https://img.shields.io/badge/Tech-React%20%7C%20FastAPI%20%7C%20Leaflet%20%7C%20PostGIS--GeoJSON%20%7C%20Scikit--Learn-06d6a0?style=for-the-badge)
 ![SIH Live Scraper](https://img.shields.io/badge/SIH%202026-Live%20Multi--Hazard%20Scraper-f72585?style=for-the-badge)
 
-**SurakshitSthan AI (BHARAT-GIS)** is a government-grade geospatial intelligence, live multi-hazard scraping, and AI-driven disaster risk assessment platform developed for **Smart India Hackathon 2026 (SIH 2026)**. It provides real-time spatial analytics across 28 States and 8 Union Territories of India, continuous multi-source disaster telemetry (USGS, GDACS, NDMA, CWC), AI safe relocation site decision support, and an official SIH 2026 problem statement scraper.
+**SurakshitSthan AI (BHARAT-GIS)** is a government-grade geospatial intelligence, live multi-hazard scraping, and AI-driven disaster risk assessment platform developed for **Smart India Hackathon 2026 (SIH 2026)**. It provides real-time spatial analytics across 28 States and 8 Union Territories of India, continuous multi-source disaster telemetry (USGS, GDACS, NDMA, CWC), and AI safe relocation site decision support.
 
 ---
 
@@ -17,15 +17,13 @@ graph TD
         GDACS["GDACS RSS Alert Feed"] --> Aggregator
         NDMA["NDMA Advisories Feed"] --> Aggregator
         CWC["CWC River Station Feed"] --> Aggregator
-        SIH_PS["Official SIH Portal<br/>(https://www.sih.gov.in/sih2026PS)"] --> SIH_Scraper["SIH 2026 Scraper & Normalizer"]
     end
 
     subgraph Backend Core (FastAPI)
         Aggregator --> GeoTransformer["Spatial Transformer & Geodesic Math<br/>(Point-in-Polygon & Radial Buffer)"]
-        SIH_Scraper --> SIH_Service["SIH Problem Service & Validator"]
         GeoTransformer --> CacheDB["Thread-Safe Cache & SQLite/PostGIS DB"]
         CacheDB --> MLEngine["ML Risk Engine & Relocation Selector<br/>(Scikit-Learn Random Forest)"]
-        MLEngine --> APIRoutes["FastAPI REST Routers<br/>(/api/gis, /api/risk, /api/relocation, /api/scraper)"]
+        MLEngine --> APIRoutes["FastAPI REST Routers<br/>(/api/gis, /api/risk, /api/relocation, /api/scrape)"]
     end
 
     subgraph Frontend Command Center (React + Vite + Leaflet)
@@ -51,16 +49,11 @@ graph TD
 * **Automated 15-Minute Background Cron**: Background lifespan loop continuously refreshes live disaster feeds without service interruption.
 * **Proximity & Spatial Queries**: Geodesic point-in-polygon containment checking, dynamic radial buffer search (10 km – 500 km radius), and bounding-box queries.
 
-### 3. Official SIH 2026 Web Scraping Engine
-* **Live Problem Statement Pipeline**: Direct ingestion from the official SIH 2026 portal (`https://www.sih.gov.in/sih2026PS`).
-* **Resilient Parser & Normalizer**: Cleans HTML entities, deduplicates entries based on completeness scores, and validates input constraints.
-* **Safety Threshold Engine**: Prevents cache corruption by rejecting incomplete data batches if network or DOM structures fluctuate.
-
-### 4. AI Risk Assessment & Safe Relocation Engine
+### 3. AI Risk Assessment & Safe Relocation Engine
 * **Predictive Risk Scoring**: Machine learning algorithms (Random Forest) evaluate multi-hazard vulnerability for habitations.
 * **Safe Relocation Recommender**: Recommends optimal safe relocation sites considering elevation, proximity to hazards, capacity, and accessibility.
 
-### 5. Multi-Tier Governance Telemetry & Command Center
+### 4. Multi-Tier Governance Telemetry & Command Center
 * **National Macro Overview**: Central Ministry view with national KPIs (Monitored Area 3.287M sq km, Critical Red Zones, At-Risk Citizens).
 * **State & District Micro Analysis**: State Nodal Officer view with district boundary drill-downs and local risk metrics.
 * **Public Advisory Portal**: Citizen-facing alert feed and location safety checking.
@@ -80,11 +73,8 @@ graph TD
 | **GIS Engine** | `GET` | `/api/gis/stats` | National spatial statistics & vulnerability rankings |
 | **Spatial Queries**| `POST`| `/api/gis/query/buffer` | Radial buffer proximity query with geodesic distance calculations |
 | **Spatial Queries**| `POST`| `/api/gis/query/bbox` | Viewport bounding box point query |
-| **Scraper** | `GET` | `/api/scraper/status` | Current status of disaster & SIH scrapers |
-| **Scraper** | `POST`| `/api/scraper/trigger` | Force manual refresh pass against live hazard feeds |
-| **SIH 2026** | `GET` | `/api/problems` | List all scraped SIH 2026 problem statements with filters |
-| **SIH 2026** | `GET` | `/api/problems/{id}` | Retrieve specific SIH problem statement |
-| **SIH 2026** | `GET` | `/api/problems/search?q=`| Full-text query search across title, description, org |
+| **Scraper** | `GET` | `/api/scrape/status` | Current status of disaster live scrapers |
+| **Scraper** | `POST`| `/api/scrape/trigger` | Force manual refresh pass against live hazard feeds |
 | **Risk & AI** | `GET` | `/api/risk/habitations` | Risk score analysis for habitations |
 | **Relocation** | `GET` | `/api/relocation/sites` | Safe site recommendations and capacity analysis |
 
@@ -96,11 +86,11 @@ graph TD
 SurakshitSthan AI/
 ├── backend/
 │   ├── app/
-│   │   ├── api/             # FastAPI REST endpoints (GIS, Scraper, Risk, SIH Problems, ML)
+│   │   ├── api/             # FastAPI REST endpoints (GIS, Scraper, Risk, ML)
 │   │   ├── config/          # Environment configuration & settings
 │   │   ├── database/        # SQLite / PostGIS SQLAlchemy ORM models & database setup
 │   │   ├── ml/              # Scikit-Learn risk assessment & relocation logic
-│   │   ├── scraper/         # Multi-hazard scrapers (USGS, GDACS, NDMA, CWC, SIH)
+│   │   ├── scraper/         # Multi-hazard scrapers (USGS, GDACS, NDMA, CWC)
 │   │   ├── spatial/         # Geodesic math, point-in-polygon, vector transformer
 │   │   ├── utils/           # Database seeder & helper utilities
 │   │   └── main.py          # FastAPI application & lifespan background cron loop
@@ -153,7 +143,7 @@ npm run dev
 
 ## 🧪 Automated Testing
 
-Execute the test suite covering spatial calculations, API routers, HTML parsers, normalizers, validator safety engines, and cache fallbacks:
+Execute the test suite covering spatial calculations, API routers, and live disaster scrapers:
 
 ```bash
 cd backend
@@ -162,7 +152,6 @@ python -m pytest tests/
 
 ### Verified Test Results:
 - ✅ `tests/test_api.py`: GIS endpoints, health checks, spatial buffer queries, risk routes.
-- ✅ `tests/test_sih_scraper.py`: HTML table/modal parser, ID pattern extraction, normalization, deduplication, safety threshold protection, and cache fallbacks.
 
 ---
 

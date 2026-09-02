@@ -7,11 +7,7 @@ import {
   SystemAlert,
   IngestionPipeline,
   ExpertValidation,
-  PriorityLevel,
-  SIHProblemStatement,
-  ScraperStatus,
-  ProblemFilterParams,
-  ProblemStats
+  PriorityLevel
 } from '../types';
 
 const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:8000';
@@ -364,45 +360,7 @@ export const api = {
     }
   },
 
-  // SIH 2026 Live Web Scraping & Problem Statements
-  getProblems: async (params?: ProblemFilterParams): Promise<SIHProblemStatement[]> => {
-    const res = await apiClient.get<SIHProblemStatement[]>('/api/problems', { params });
-    return res.data;
-  },
 
-  getProblemById: async (id: string): Promise<SIHProblemStatement> => {
-    const res = await apiClient.get<SIHProblemStatement>(`/api/problems/${id}`);
-    return res.data;
-  },
-
-  searchProblems: async (query: string): Promise<SIHProblemStatement[]> => {
-    const res = await apiClient.get<SIHProblemStatement[]>('/api/problems/search', {
-      params: { q: query }
-    });
-    return res.data;
-  },
-
-  filterProblems: async (filters: ProblemFilterParams): Promise<SIHProblemStatement[]> => {
-    const res = await apiClient.get<SIHProblemStatement[]>('/api/problems/filter', {
-      params: filters
-    });
-    return res.data;
-  },
-
-  getScraperStatus: async (): Promise<ScraperStatus> => {
-    const res = await apiClient.get<ScraperStatus>('/api/scraper/status');
-    return res.data;
-  },
-
-  refreshScraper: async (): Promise<{ message: string; status: ScraperStatus }> => {
-    const res = await apiClient.post<{ message: string; status: ScraperStatus }>('/api/scraper/refresh');
-    return res.data;
-  },
-
-  getProblemStats: async (): Promise<ProblemStats> => {
-    const res = await apiClient.get<ProblemStats>('/api/problems/stats');
-    return res.data;
-  },
 
   // Dynamic Live Web Scraping Engine
   getLiveScraperStatus: async () => {

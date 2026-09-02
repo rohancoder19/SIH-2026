@@ -6,7 +6,7 @@ class RelocationRecommendationService:
     def calculate_site_recommendations(habitation: Dict[str, Any], relocation_sites: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         hab_lat = habitation["latitude"]
         hab_lng = habitation["longitude"]
-        vuln_pop = habitation["vulnerable_population"]
+        vuln_pop = habitation.get("vulnerable_population", 500)
 
         ranked_sites = []
 
@@ -67,11 +67,89 @@ class RelocationRecommendationService:
                 "latitude": site_lat,
                 "longitude": site_lng,
                 "evacuation_route": route_coords,
-                "recommendation_reason": f"High safety rating ({safety}/100) and sufficient capacity buffer ({available_cap} available seats) located {dist_km} km away."
+                "recommendation_reason": f"High safety rating ({safety}/100) and capacity buffer ({available_cap} seats) located {dist_km} km away."
             })
 
         # Sort by overall score descending
         ranked_sites.sort(key=lambda x: x["overall_score"], reverse=True)
         return ranked_sites
+
+    @staticmethod
+    def simulate_multi_site_relocation(habitations: List[Dict[str, Any]], relocation_sites: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """
+        Simulates multi-site relocation allocation across habitations with capacity deficit tracking.
+        """
+        # Create copies of available capacities to track live allocation
+        site_capacities = {
+            s["id"]: max(0, s.get("population_capacity", 5000) - s.get("current_population", 0))
+            for s in relocation_sites
+        }
+        site_map = {s["id"]: s for s in relocation_sites}
+
+        total_vulnerable_citizens = sum(h.get("vulnerable_population", 0) for h in habitations)
+        total_allocated_citizens = 0
+        allocations = []
+
+        # Process habitations in priority order: IMMEDIATE > SHORT_TERM > MEDIUM_TERM
+        priority_order = {"IMMEDIATE": 1, "SHORT_TERM": 2, "MEDIUM_TERM": 3, "MONITOR": 4}
+        sorted_habs = sorted(habitations, key=lambda h: (priority_order.get(h.get("relocation_priority", "SHORT_TERM"), 3), -h.get("hazard_score", 50)))
+
+        for hab in sorted_habs:
+            needed = hab.get("vulnerable_population", 0)
+            remaining_needed = needed
+            hab_allocations = []
+
+            # Find candidate sites sorted by MCDA score for this habitation
+            rec_sites = RelocationRecommendationService.calculate_site_recommendations(hab, relocation_sites)
+
+            for rec in rec_sites:
+                if remaining_needed <= 0:
+                    break
+                sid = rec["site_id"]
+                avail = site_capacities.get(sid, 0)
+                if avail <= 0:
+                    continue
+
+                alloc_count = min(remaining_needed, avail)
+                site_capacities[sid] -= alloc_count
+                remaining_needed -= alloc_count
+                total_allocated_citizens += alloc_count
+
+                hab_allocations.append({
+                    "site_id": sid,
+                    "site_name": rec["site_name"],
+                    "allocated_people": alloc_count,
+                    "distance_km": rec["distance_km"],
+                    "remaining_site_capacity": site_capacities[sid]
+                })
+
+            allocations.append({
+                "habitation_id": hab["id"],
+                "habitation_name": hab["name"],
+                "relocation_priority": hab.get("relocation_priority", "SHORT_TERM"),
+                "total_vulnerable_population": needed,
+                "fully_sheltered": remaining_needed == 0,
+                "unallocated_citizens": remaining_needed,
+                "allocations": hab_allocations
+            })
+
+        total_deficit = total_vulnerable_citizens - total_allocated_citizens
+
+        return {
+            "total_vulnerable_citizens": total_vulnerable_citizens,
+            "total_allocated_citizens": total_allocated_citizens,
+            "capacity_deficit": max(0, total_deficit),
+            "allocation_percentage": round((total_allocated_citizens / max(1, total_vulnerable_citizens)) * 100.0, 1),
+            "habitation_allocations": allocations,
+            "site_capacity_remaining": [
+                {
+                    "site_id": sid,
+                    "site_name": site_map[sid]["name"],
+                    "original_available_capacity": max(0, site_map[sid].get("population_capacity", 5000) - site_map[sid].get("current_population", 0)),
+                    "remaining_capacity": cap
+                }
+                for sid, cap in site_capacities.items()
+            ]
+        }
 
 relocation_service = RelocationRecommendationService()

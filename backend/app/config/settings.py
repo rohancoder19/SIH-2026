@@ -17,8 +17,6 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
     DEMO_MODE: bool = False
 
-    # SIH 2026 Live Web Scraper Settings
-    SIH_SOURCE_URL: str = os.getenv("SIH_SOURCE_URL", "https://www.sih.gov.in/sih2026PS")
     CACHE_TTL_MINUTES: int = int(os.getenv("CACHE_TTL_MINUTES", "60"))
     SCRAPER_USER_AGENT: str = os.getenv(
         "SCRAPER_USER_AGENT",
